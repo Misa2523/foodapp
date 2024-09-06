@@ -1,0 +1,2 @@
+class CookingPost < ApplicationRecord
+end

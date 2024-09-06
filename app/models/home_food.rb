@@ -1,0 +1,2 @@
+class HomeFood < ApplicationRecord
+end

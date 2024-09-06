@@ -1,0 +1,2 @@
+class FoodStrageArea < ApplicationRecord
+end
