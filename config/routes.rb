@@ -1,4 +1,29 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/destroy'
+    get 'genres/create'
+    get 'genres/edit'
+    get 'genres/update'
+
+    get 'food_strage_areas/new'
+    get 'food_strage_areas/create'
+    get 'food_strage_areas/index'
+    get 'food_strage_areas/destroy'
+    get 'food_strage_areas/edit'
+    get 'food_strage_areas/update'
+
+    get 'cooking_posts/index'
+    get 'cooking_posts/show'
+
+    get 'customers/posts_index'
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+
+    get 'homes/top'
+  end
+
   namespace :public do
     get 'cooking_posts/new'
     get 'cooking_posts/create'
