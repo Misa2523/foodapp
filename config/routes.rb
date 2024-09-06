@@ -1,63 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/destroy'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-
-    get 'food_strage_areas/new'
-    get 'food_strage_areas/create'
-    get 'food_strage_areas/index'
-    get 'food_strage_areas/destroy'
-    get 'food_strage_areas/edit'
-    get 'food_strage_areas/update'
-
-    get 'cooking_posts/index'
-    get 'cooking_posts/show'
-
-    get 'customers/posts_index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-
-    get 'homes/top'
-  end
-
-  namespace :public do
-    get 'cooking_posts/new'
-    get 'cooking_posts/create'
-    get 'cooking_posts/index'
-    get 'cooking_posts/search'
-    get 'cooking_posts/show'
-    get 'cooking_posts/edit'
-    get 'cooking_posts/update'
-    get 'cooking_posts/destroy'
-
-    get 'customers/index'
-    get 'customers/posts_index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/check'
-    get 'customers/out'
-
-    get 'food_strage_areas/index'
-
-    get 'home_foods/new'
-    get 'home_foods/create'
-    get 'home_foods/index'
-    get 'home_foods/edit'
-    get 'home_foods/update'
-    get 'home_foods/destroy'
-
-    get 'notifications/index'
-    get 'notifications/mark_as_read'
-    get 'notifications/destroy'
-
-    get 'homes/top'
-    get 'homes/about'
-  end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -68,5 +9,42 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  #会員側の設定
+  root 'public/homes#top'
+  get 'about', to: 'public/homes#about'
+  scope module: :public do
+    resources :cooking_posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      collection do #オリジナルのアクションに対する設定
+        get 'search'
+      end
+    end
+    resources :customers, only: [:index, :show, :edit, :update] do
+      collection do #オリジナルのアクションに対する設定
+        get 'posts_index'
+        get 'check'
+        get 'out'
+      end
+    end
+    resources :food_strage_areas, only: [:index]
+    resources :home_foods, only: [:new, :create, :index, :edit, :update, :destroy]
+    resources :notifications, only: [:index, :destroy] do
+      collection do #オリジナルのアクションに対する設定
+        get 'mark_as_read'
+      end
+    end
+  end
+
+  #管理者側の設定
+  get 'admin', to: 'admin/homes#top'
+  namespace :admin do
+    resources :genres, only: [:index, :destroy, :create, :edit, :update]
+    resources :food_strage_areas, only: [:new, :create, :index, :destroy, :edit, :update]
+    resources :cooking_posts, only: [:index, :show]
+    resources :customers, only: [:show, :edit, :update] do
+      collection do #オリジナルのアクションに対する設定
+        get 'posts_index'
+      end
+    end
+  end
+
 end
