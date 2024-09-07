@@ -1,6 +1,20 @@
 class Customer < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  #アソシエーション
+  has_many :cooking_posts, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+  has_many :home_foods, dependent: :destroy
+
+  #バリデーション設定
+  validates :name, presence: true
+  validates :name_kana, presence: true
+  validates :telephone_number, presence: true
+
+  def active_for_authentication? #有効会員かどうかを判断
+    super && (self.is_active == true)
+  end
+
 end
