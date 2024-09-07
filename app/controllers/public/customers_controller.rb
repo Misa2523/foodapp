@@ -1,4 +1,5 @@
-class Pubic::CustomersController < ApplicationController
+class Public::CustomersController < ApplicationController
+
   def index
   end
 
@@ -19,4 +20,5 @@ class Pubic::CustomersController < ApplicationController
 
   def out
   end
+
 end
