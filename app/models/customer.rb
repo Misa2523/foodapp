@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   #バリデーション設定
   validates :name, presence: true
   validates :name_kana, presence: true
-  validates :telephone_number, presence: true
+  validates :telephone_number, uniqueness: true, presence: true #uniqueness：一意性があるか
 
   def active_for_authentication? #有効会員かどうかを判断
     super && (self.is_active == true)
