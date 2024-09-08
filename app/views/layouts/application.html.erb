@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Foodapp</title>
+    <title>フードロス削減App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,43 +11,61 @@
   </head>
 
   <body>
-    <header>
-      <% if customer_signed_in? %> <!--会員がサインインしてる場合-->
-        <div class="welcome">ようこそ、<strong><%= current_customer.name %></strong>さん！</div>
-        <div class="header-bottom">
-          <ul　class="nav nav-pills nav-justified">
-            <li><%= link_to "家庭内食材一覧", home_foods_path, class:"nav-link" %></li>
-            <li><%= link_to "食材保存場所一覧", food_strage_areas_path, class:"nav-link" %></li>
-            <li><%= link_to "会員一覧", customers_path, class:"nav-link" %></li>
-            <li><%= link_to "みんなの投稿一覧", cooking_posts_path, class:"nav-link" %></li>
-            <li><%= link_to "自分の投稿一覧", customer_path, class:"nav-link" %></li><!--リンクの設定するposts_index_customers_path-->
-            <li><%= link_to "通知", notifications_path, class:"nav-link" %></li>
-            <li><%= link_to "マイページ", customer_path, class:"nav-link" %></li>
-            <li><%= link_to "ログアウト", destroy_customer_session_path, class:"nav-link", method: :delete %></li>
-          </ul>
-        </div>
-      <% elsif admin_signed_in? %> <!--管理者がサインインしてる場合-->
-        <div class="admin-header">
-          <h3><%= link_to "フードロス削減アプリケーション", admin_path %></h3>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "会員一覧", admin_path %></li>
-            <li><%= link_to "投稿一覧", admin_cooking_posts_path %></li>
-            <li><%= link_to "食材保存場所一覧", admin_food_strage_areas_path %></li>
-            <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-          </ul>
-        </div>
-      <% else %> <!--サインイン前の場合-->
-        <div class="header-bottom">
-          <ul class="nav nav-pills nav-justified">
-            <li><%= link_to "About", about_path, class:"nav-link" %></li>
-            <li><%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %></li>
-            <li><%= link_to "ログイン", new_customer_session_path, class:"nav-link" %></li>
-          </ul>
-        </div>
-      <% end %>
+    <header class="p-2"><!--背景色あとで変更する-->
+      <div class="d-flex justofy-content-between align-items-center mb-4">
+
+        <% if customer_signed_in? %> <!--会員がサインインしてる場合-->
+          <%= link_to "フードロス削減アプリケーション", admin_path, class: "navbar-brand" %>
+          <div>
+            <nav class="mb-2">
+              <ul class="navbar-nav list-group-horizontal">
+                <li class="nav-item"><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "食材保存場所一覧", food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "みんなの投稿一覧", cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item">自分の投稿一覧<%#= link_to "自分の投稿一覧", customer_path, class: "btn btn-outline-secondary mr-3" %></li><!--リンクの設定するposts_index_customers_path-->
+                <li class="nav-item"><%= link_to "通知", notifications_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, class: "btn btn-outline-secondary mr-3", method: :delete %></li>
+              </ul>
+            </nav>
+          </div>
+        <% elsif admin_signed_in? %> <!--管理者がサインインしてる場合-->
+          <%= link_to "フードロス削減アプリケーション", root_path, class: "navbar-brand" %>
+          <div>
+            <nav class="mb-2">
+              <ul class="navbar-nav list-group-horizontal">
+                <li class="nav-item"><%= link_to "会員一覧", admin_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "投稿一覧", admin_cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "食材保存場所一覧", admin_food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
+              </ul>
+            </nav>
+          </div>
+        <% else %> <!--サインイン前の場合-->
+          <%= link_to "フードロス削減アプリケーション", root_path, class: "navbar-brand" %>
+          <div>
+            <nav class="mb-2">
+              <ul class="navbar-nav list-group-horizontal">
+                <li class="nav-item"><%= link_to "About", about_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary mr-3" %></li>
+              </ul>
+            </nav>
+          </div>
+        <% end %>
+
+      </div>
     </header>
+
+    <main>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div> <!--フラッシュメッセージ表示-->
+      <% end %>
+    </main>
     <%= yield %>
+
     <footer>
       <div class="container">
         <div class="text-center text-muted" style="margin: 50px 0;">© 2024 M-MOCHI</div>
