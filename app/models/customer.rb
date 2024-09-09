@@ -20,6 +20,19 @@ class Customer < ApplicationRecord
     super && (self.is_active == true)
   end
 
+  #ゲストログイン機能
+  def self.guest
+    find_or_create_by!(email: "guest@example.com") do |customer| #emailが記述と一致する顧客レコードをデータベースから検索し、なかったら新しく作成
+      customer.password = SecureRandom.urlsafe_base64 #ランダムな文字列を生成
+      customer.name = "ゲストユーザー"
+      #バリデーションで全カラムに対し空白がNGとなっているため、以下も設定しておく
+      customer.name_kana = "ゲストユーザー"
+      customer.telephone_number = '00000000000'
+      customer.password_confirmation = customer.password
+      customer.is_active = true
+    end
+  end
+
   private
 
   #emailの正規化処理
