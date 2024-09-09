@@ -3,23 +3,27 @@
 <h2>新規会員登録</h2>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+  <%#= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :"氏名" %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "氏名" %>
+    <%#= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "氏名" %>
+    <%= f.text_field :name, autofocus: true, required: true, autocomplete: "name", placeholder: "氏名" %>
   </div>
   <div class="field">
     <%= f.label :"フリガナ" %>
-    <%= f.text_field :name_kana, autocomplete: "name_kana", placeholder: "シメイ" %>
+    <%#= f.text_field :name_kana, autocomplete: "name_kana", placeholder: "シメイ" %>
+    <%= f.text_field :name_kana, required: true, autocomplete: "name_kana", placeholder: "シメイ" %>
   </div>
   <div class="field">
     <%= f.label :"メールアドレス" %>
-    <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %>
+    <%#= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %>
+    <%= f.email_field :email, required: true, autocomplete: "email", placeholder: "sample@example.com" %>
   </div>
   <div class="field">
     <%= f.label :"電話番号(ハイフンなし)" %>
-    <%= f.text_field :telephone_number, autocomplete: "telephone_number", placeholder: "00000000000" %>
+    <%#= f.text_field :telephone_number, autocomplete: "telephone_number", placeholder: "00000000000" %>
+    <%= f.text_field :telephone_number, required: true, autocomplete: "telephone_number", placeholder: "00000000000" %>
   </div>
 
   <div class="field">
@@ -27,12 +31,14 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%#= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, required: true, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :"パスワード(確認用)" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
@@ -44,6 +50,3 @@
 <p>既に登録済みの方</p>
 <%= link_to "ログインはこちら", new_customer_session_path %>
 <%= button_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %>
-
-
-230

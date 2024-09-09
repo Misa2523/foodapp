@@ -14,7 +14,9 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :name_kana, presence: true
   validates :telephone_number, uniqueness: true, presence: true #uniqueness：一意性があるか
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } #標準的なメールアドレスの形式に対し十分なバリデーションを提供
+  validates :email, presence: true, uniqueness: true,
+            format: { with: URI::MailTo::EMAIL_REGEXP }, #標準的なメールアドレスの形式に対し十分なバリデーションを提供
+              unless: :guest? #ゲストログイン時はメールアドレスの一意性バリデーションを無効化（private内のメソッド実行）
 
   def active_for_authentication? #有効会員かどうかを判断
     super && (self.is_active == true)
@@ -37,7 +39,12 @@ class Customer < ApplicationRecord
 
   #emailの正規化処理
   def normalize_email
-    self.email = email.downcase.strip if email.present?
+    self.email = email.downcase.strip if email.present? #email属性が存在する場合、emailの値を小文字に変換し両端の空白を削除
+  end
+
+  #ゲストユーザーかどうか判断
+  def guest?
+    email == "guest@example.com"
   end
 
 end
