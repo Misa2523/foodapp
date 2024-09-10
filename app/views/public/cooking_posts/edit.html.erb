@@ -1,1 +1,30 @@
-<h1>料理投稿編集ページ 16P</h1>
+料理投稿編集ページ 16P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>投稿編集</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <%= form_with model: @cooking_post, url: cooking_post_path(@cooking_post) do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><label>料理画像</label></td>
+            <td><%= f.file_field :cooking_post_image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><label>料理名</label></td>
+            <td><%= f.text_field :name, style: "width: 100%;" %></td>
+          </tr>
+          <tr>
+            <td><label>紹介文</label></td>
+            <td><%= f.text_area :introduction, rows: 5, style: "width: 100%;" %></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "変更を保存" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
