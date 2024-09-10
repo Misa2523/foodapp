@@ -46,6 +46,15 @@ class Public::CookingPostsController < ApplicationController
   end
 
   def destroy
+    cooking_post = CookingPost.find(params[:id])
+    if cooking_post.destroy
+      flash[:notice] = "料理情報が削除されました"
+      redirect_to cooking_posts_path
+    else
+      cooking_post = CookingPost.find(params[:id])
+      flash[:notice] = "料理の削除ができませんでした"
+      render :edit
+    end
   end
 
   private
