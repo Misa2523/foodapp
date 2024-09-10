@@ -19,6 +19,7 @@ class Public::CookingPostsController < ApplicationController
   end
 
   def index
+    @cooking_posts = CookingPost.all.page(params[:page]).per(10)
   end
 
   def search
