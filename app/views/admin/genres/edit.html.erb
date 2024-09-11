@@ -1,1 +1,20 @@
-<h1>ジャンル編集ページ 32P</h1>
+ジャンル編集ページ 32P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>ジャンル編集</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <%= form_with model: @genre, url: admin_genre_path(@genre) do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><label>ジャンル名</label></td>
+            <td><%= f.text_field :name %></td>
+            <td><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

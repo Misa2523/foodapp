@@ -14,7 +14,7 @@ class Public::CookingPostsController < ApplicationController
       flash[:notice] = "新しい料理を投稿しました"
       redirect_to cooking_post_path(@cooking_post.id)
     else
-      @cooking_post = CookingPost.new
+      @cooking_post = CookingPost.new #renderでnewページを描くため、newで使う変数をこのアクション内で再定義
       flash[:notice] = "料理の投稿ができませんでした"
       render :new
     end
@@ -42,19 +42,19 @@ class Public::CookingPostsController < ApplicationController
       flash[:notice] = "料理情報が更新されました"
       redirect_to cooking_post_path(@cooking_post.id)
     else
-      @cooking_post = CookingPost.find(params[:id])
+      @cooking_post = CookingPost.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
       flash[:notice] = "入力項目を正しく入力してください"
       render :edit
     end
   end
 
   def destroy
-    cooking_post = CookingPost.find(params[:id])
-    if cooking_post.destroy
+    @cooking_post = CookingPost.find(params[:id])
+    if @cooking_post.destroy
       flash[:notice] = "料理情報が削除されました"
       redirect_to cooking_posts_path
     else
-      cooking_post = CookingPost.find(params[:id])
+      @cooking_post = CookingPost.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
       flash[:notice] = "料理の削除ができませんでした"
       render :edit
     end
