@@ -11,7 +11,7 @@
           <tr>
             <td><label>ジャンル名</label></td>
             <td><%= f.text_field :name, placeholder: "ジャンル名" %></td>
-            <td><%= f.submit "新規投稿", class: "btn btn-success", style: "font-weight: bold;" %></td>
+            <td><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %></td>
           </tr>
         </tbody>
       </table>
@@ -30,8 +30,8 @@
           <tr>
             <td><%= genre.name %></td>
             <td>
-              <%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-success", style: "font-weight: bold;" %>
-              <%= button_to "削除", admin_genre_path(genre), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+              <%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-outline-success", style: "font-weight: bold;" %>
+              <%= button_to "削除", admin_genre_path(genre), method: :delete, class: "btn btn-outline-danger", data: {confirm: '本当に削除しますか？'} %>
             </td>
           </tr>
         <% end %>

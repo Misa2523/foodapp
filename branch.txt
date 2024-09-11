@@ -14,4 +14,4 @@ feature/home-food：CRUD機能の実装（家庭内食材投稿/編集/削除ペ
 feature/my-page：ログイン後ユーザーページの実装（マイページ/編集ページの作成）
 
 feature/genre：管理者側でジャンル機能実装
-feature/food-storage：管理者側でCRUD機能の実装（食材保存場所投稿/編集/削除ページ作成、会員側の一覧ページ作成）
+feature/food-storage-area：管理者側でCRUD機能の実装（食材保存場所投稿/編集/削除ページ作成、会員側の一覧ページ作成）
