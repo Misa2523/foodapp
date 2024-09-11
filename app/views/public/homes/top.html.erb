@@ -16,7 +16,7 @@
   <div class="row pt-3 justify-content-center">
     <% @cooking_posts.first(4).each do |post| %>
       <div>
-        <%= link_to cooking_posts_path(post) do %>
+        <%= link_to cooking_post_path(post) do %>
           <div><%= image_tag post.get_cooking_post_image(200, 200) %></div>
           <p><%= post.name %></p>
         <% end %>
