@@ -1,18 +1,20 @@
 class Public::CookingPostsController < ApplicationController
 
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   def new
     @cooking_post = CookingPost.new
   end
 
   def create
-    cooking_post = CookingPost.new(cooking_post_params)
-    cooking_post.customer_id = current_customer.id
+    @cooking_post = CookingPost.new(cooking_post_params)
+    @cooking_post.customer_id = current_customer.id
 
-    if cooking_post.save
+    if @cooking_post.save
       flash[:notice] = "新しい料理を投稿しました"
-      redirect_to cooking_post_path(cooking_post.id)
+      redirect_to cooking_post_path(@cooking_post.id)
     else
-      cooking_post = CookingPost.new
+      @cooking_post = CookingPost.new
       flash[:notice] = "料理の投稿ができませんでした"
       render :new
     end
@@ -27,6 +29,7 @@ class Public::CookingPostsController < ApplicationController
 
   def show
     @cooking_post = CookingPost.find(params[:id])
+    @user = @cooking_post.customer
   end
 
   def edit
@@ -34,13 +37,13 @@ class Public::CookingPostsController < ApplicationController
   end
 
   def update
-    cooking_post = CookingPost.find(params[:id])
-    if cooking_post.update(cooking_post_params)
+    @cooking_post = CookingPost.find(params[:id])
+    if @cooking_post.update(cooking_post_params)
       flash[:notice] = "料理情報が更新されました"
-      redirect_to cooking_post_path(cooking_post.id)
+      redirect_to cooking_post_path(@cooking_post.id)
     else
-      cooking_post = CookingPost.find(params[:id])
-      flash[:notice] = "料理の更新ができませんでした"
+      @cooking_post = CookingPost.find(params[:id])
+      flash[:notice] = "入力項目を正しく入力してください"
       render :edit
     end
   end
@@ -61,6 +64,15 @@ class Public::CookingPostsController < ApplicationController
 
   def cooking_post_params
     params.require(:cooking_post).permit(:cooking_post_image, :customer_id, :name, :introduction)
+  end
+
+  #ログインユーザーがその投稿の投稿者か判断するメソッド（自分以外が処理を実行できないようにする）
+  def is_matching_login_user
+    @cooking_post = CookingPost.find(params[:id])
+    @user = @cooking_post.customer
+    unless @user.id == current_customer.id
+      redirect_to cooking_posts_path
+    end
   end
 
 end

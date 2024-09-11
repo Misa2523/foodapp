@@ -19,12 +19,14 @@
             <td><label>紹介文</label></td>
             <td><%= @cooking_post.introduction %></td>
           </tr>
-          <tr>
-            <td>
-              <%= link_to "編集する", edit_cooking_post_path(@cooking_post), class: "btn btn-success", style: "font-weight: bold;" %>
-              <%= button_to "削除する", cooking_post_path(@cooking_post), method: :delete, data: {confirm: '本当に削除しますか？'} %>
-            </td>
-          </tr>
+          <% if @user == current_customer %> <!--ログインユーザーが投稿者なら表示-->
+            <tr>
+              <td>
+                <%= link_to "編集する", edit_cooking_post_path(@cooking_post), class: "btn btn-success", style: "font-weight: bold;" %>
+                <%= button_to "削除する", cooking_post_path(@cooking_post), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
