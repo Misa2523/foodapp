@@ -1,1 +1,30 @@
-<h1>料理新規投稿ページ 17P</h1>
+料理新規投稿ページ 17P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>新規投稿</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <%= form_with model: @cooking_post, url: cooking_posts_path do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><label>料理画像</label></td>
+            <td><%= f.file_field :cooking_post_image, accept: "image/jpg" %></td>
+          </tr>
+          <tr>
+            <td><label>料理名</label></td>
+            <td><%= f.text_field :name, placeholder: "きんぴらごぼう", style: "width: 100%;" %></td>
+          </tr>
+          <tr>
+            <td><label>紹介文</label></td>
+            <td><%= f.text_area :introduction, placeholder: "ごぼうと人参が余っていたのでお手軽に作ってみました。", rows: 5, style: "width: 100%;" %></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "新規投稿" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

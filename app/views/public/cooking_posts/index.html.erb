@@ -1,1 +1,36 @@
-<h1>みんなの投稿一覧ページ 12,13P</h1>
+みんなの投稿一覧ページ 12,13P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>みんなの投稿一覧</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>画像</th>
+          <th>料理名</th>
+          <th>投稿者</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cooking_posts.each do |cooking_post| %>
+          <tr>
+            <td><%= image_tag cooking_post.get_cooking_post_image(200, 200) %></td>
+            <td>
+              <%= link_to cooking_post_path(cooking_post.id), style: "color: black; text-decoration: underline;" do %>
+                <%= cooking_post.name %>
+              <% end %>
+            </td>
+            <td><%= cooking_post.customer.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= paginate @cooking_posts, class: "pagination" %>
+    </div>
+  </div>
+</div>
