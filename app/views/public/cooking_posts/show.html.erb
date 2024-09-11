@@ -22,8 +22,8 @@
           <% if @user == current_customer %> <!--ログインユーザーが投稿者なら表示-->
             <tr>
               <td>
-                <%= link_to "編集する", edit_cooking_post_path(@cooking_post), class: "btn btn-success", style: "font-weight: bold;" %>
-                <%= button_to "削除する", cooking_post_path(@cooking_post), method: :delete, data: {confirm: '本当に削除しますか？'} %>
+                <%= link_to "編集する", edit_cooking_post_path(@cooking_post), class: "btn btn-outline-success", style: "font-weight: bold;" %>
+                <%= button_to "削除する", cooking_post_path(@cooking_post), method: :delete, class: "btn btn-outline-danger", data: {confirm: '本当に削除しますか？'} %>
               </td>
             </tr>
           <% end %>
