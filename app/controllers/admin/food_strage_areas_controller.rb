@@ -10,7 +10,6 @@ class Admin::FoodStrageAreasController < ApplicationController
       flash[:notice] = "新しい食材を登録しました"
       redirect_to admin_food_strage_areas_path
     else
-      @food_strage_area = FoodStrageArea.new #renderでnewページを描くため、newで使う変数をこのアクション内で再定義
       flash[:notice] = "食材の登録ができませんでした"
       render :new
     end

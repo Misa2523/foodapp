@@ -8,13 +8,12 @@ class Public::CookingPostsController < ApplicationController
 
   def create
     @cooking_post = CookingPost.new(cooking_post_params)
-    @cooking_post.customer_id = current_customer.id
+    @cooking_post.customer_id = current_customer.id #ログイン中の顧客のIDを設定(1:NのN側でこの設定が必要)
 
     if @cooking_post.save
       flash[:notice] = "新しい料理を投稿しました"
       redirect_to cooking_post_path(@cooking_post.id)
     else
-      @cooking_post = CookingPost.new #renderでnewページを描くため、newで使う変数をこのアクション内で再定義
       flash[:notice] = "料理の投稿ができませんでした"
       render :new
     end
