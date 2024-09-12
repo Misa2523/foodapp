@@ -1,1 +1,41 @@
-<h1>家庭内食材編集ページ 9P</h1>
+家庭内食材編集ページ 9P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>食材の編集</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <%= form_with model: @home_food, url: home_food_path(@home_food) do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><label>食材名</label></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><label>量</label></td>
+            <td><%= f.text_field :amount %></td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <p style="font-size: smaller; color: gray;">※期限は食材に記載のある方を入力してください。（どちらもない場合は未入力でOKです。）</p><!--注釈-->
+              <label>消費期限</label>
+              <%= f.date_field :expiration_date %> <!--カレンダー入力-->
+              <label>賞味期限</label>
+              <%= f.date_field :best_before_date %>
+            </td>
+          </tr>
+          <tr>
+            <td><label>ジャンル</label></td>
+            <td>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %> <!--セレクトボックス-->
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

@@ -1,1 +1,44 @@
-<h1>家庭内食材一覧ページ 6,7P</h1>
+家庭内食材一覧ページ 6,7P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4 class="col-4"><strong>家庭内食材一覧</strong></h4>
+    <div class="col-4">
+      <%= link_to "新規登録", new_home_food_path, class: "btn btn-outline-success", style: "font-weight: bold;" %>
+    </div>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>食材名</th>
+          <th>量</th>
+          <th>消費期限</th>
+          <th>賞味期限</th>
+          <th>登録日</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @home_foods.each do |home_food| %>
+          <tr>
+            <td><%= home_food.name %></td>
+            <td><%= home_food.amount %></td>
+            <td><%= home_food.expiration_date.present? ? home_food.expiration_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
+            <td><%= home_food.best_before_date.present? ? home_food.best_before_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
+            <td><%= home_food.created_at.strftime("%Y/%m/%d") %></td> <!--年月日のみ表示-->
+            <td>
+              <%= link_to "編集", edit_home_food_path(home_food), class: "btn btn-outline-success", style: "font-weight: bold;" %>
+              <%= button_to "削除", home_food_path(home_food), method: :delete, class: "btn btn-danger", data: {confirm: '本当に削除しますか？'} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= paginate @home_foods, class: "pagination" %>
+    </div>
+  </div>
+</div>
