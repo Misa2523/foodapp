@@ -1,5 +1,7 @@
 class Public::HomeFoodsController < ApplicationController
 
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   def new
     @home_food = HomeFood.new
   end
@@ -12,7 +14,6 @@ class Public::HomeFoodsController < ApplicationController
       flash[:notice] = "新しい食材を登録しました"
       redirect_to home_foods_path
     else
-      #@home_food = HomeFood.new #renderでnewページを描くため、newで使う変数をこのアクション内で再定義
       flash[:notice] = "食材の登録ができませんでした"
       render :new
     end
@@ -53,6 +54,15 @@ class Public::HomeFoodsController < ApplicationController
 
   def home_food_params
     params.require(:home_food).permit(:customer_id, :genre_id, :name, :amount, :expiration_date, :best_before_date)
+  end
+
+  #ログインユーザーがその食材の登録者か判断するメソッド（自分以外が処理を実行できないようにする）
+  def is_matching_login_user
+    @home_food = HomeFood.find(params[:id])
+    @user = @home_food.customer
+    unless @user.id == current_customer.id
+      redirect_to home_foods_path
+    end
   end
 
 end
