@@ -23,7 +23,7 @@
                 <li class="nav-item"><%= link_to "食材保存場所一覧", food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "みんなの投稿一覧", cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
-                <li class="nav-item">自分の投稿一覧<%#= link_to "自分の投稿一覧", customer_path, class: "btn btn-outline-secondary mr-3" %></li><!--リンクの設定するposts_index_customers_path-->
+                <li class="nav-item"><%= link_to "自分の投稿一覧", posts_index_customers_path(current_customer.id), class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "通知", notifications_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, class: "btn btn-outline-secondary mr-3", method: :delete %></li>

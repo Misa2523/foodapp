@@ -1,1 +1,37 @@
-<h1>マイプロフィール編集ページ 19P</h1>
+マイプロフィール編集ページ 19P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>マイプロフィール編集</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <%= form_with model: @customer, url: customers_information_path do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><label>氏名</label></td>
+            <td><%= f.text_field :name, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td><label>フリガナ</label></td>
+            <td><%= f.text_field :name_kana %></td>
+          </tr>
+          <tr>
+            <td><label>メールアドレス</label></td>
+            <td><%= f.email_field :email %></td>
+          </tr>
+          <tr>
+            <td><label>電話番号</label></td>
+            <td><%= f.text_field :telephone_number %></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %>
+              <%= link_to "退会する", customers_check_path, class: "btn btn-outline-danger", style: "font-weight: bold;" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
