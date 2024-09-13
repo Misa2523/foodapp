@@ -19,7 +19,7 @@
             <td><label>紹介文</label></td>
             <td><%= @cooking_post.introduction %></td>
           </tr>
-          <% if @user == current_customer %> <!--ログインユーザーが投稿者なら表示-->
+          <% if @customer == current_customer %> <!--ログインユーザーが投稿者なら表示-->
             <tr>
               <td>
                 <%= link_to "編集する", edit_cooking_post_path(@cooking_post), class: "btn btn-outline-success", style: "font-weight: bold;" %>
