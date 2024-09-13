@@ -1,1 +1,38 @@
-<h1>会員一覧ページ 10P</h1>
+会員一覧ページ 11P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>会員一覧</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>氏名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+
+          <% unless customer.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
+            <% unless customer.is_active == false %> <!--退会している会員でなければ表示-->
+              <tr>
+                <td>
+                  <%= link_to posts_index_customers_path(customer.id), style: "color: black; text-decoration: underline;" do %>
+                    <%= customer.name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= paginate @customers, class: "pagination" %>
+    </div>
+  </div>
+</div>
