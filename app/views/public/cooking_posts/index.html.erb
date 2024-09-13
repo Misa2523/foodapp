@@ -15,15 +15,17 @@
       </thead>
       <tbody>
         <% @cooking_posts.each do |cooking_post| %>
-          <tr>
-            <td><%= image_tag cooking_post.get_cooking_post_image(200, 200) %></td>
-            <td>
-              <%= link_to cooking_post_path(cooking_post.id), style: "color: black; text-decoration: underline;" do %>
-                <%= cooking_post.name %>
-              <% end %>
-            </td>
-            <td><%= cooking_post.customer.name %></td>
-          </tr>
+          <% unless cooking_post.customer.is_active == false %> <!--退会している会員でなければ表示-->
+            <tr>
+              <td><%= image_tag cooking_post.get_cooking_post_image(200, 200) %></td>
+              <td>
+                <%= link_to cooking_post_path(cooking_post.id), style: "color: black; text-decoration: underline;" do %>
+                  <%= cooking_post.name %>
+                <% end %>
+              </td>
+              <td><%= cooking_post.customer.name %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

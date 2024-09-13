@@ -11,7 +11,7 @@ guest：ゲストログイン機能、ゲストログイン時のemail一意性�
 top_about：Aboutページ、ユーザー側トップページの作成
 feature/cooking-post：CRUD機能の実装（料理投稿/編集/削除機能の作成）
 feature/home-food：CRUD機能の実装（家庭内食材投稿/編集/削除機能の作成）、家庭内食材に関して自分のデータのみ表示する設定
-feature/my-page：ログイン後ユーザーページの実装（マイページ/編集ページの作成）
+feature/my-page：ログイン後ユーザーページの実装（マイページ/編集ページ/退会確認ページの作成）、
 
 feature/genre：管理者側でジャンル機能実装
 feature/food-storage-area：管理者側でCRUD機能の実装（管理者側の食材保存場所投稿/編集/削除機能の作成、会員側の一覧ページ作成）

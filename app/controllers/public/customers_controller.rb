@@ -34,6 +34,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def out
+    @customer = current_customer
+    @customer.update(is_active: false) #is_activeカラムをfalseに更新（会員ステータスを退会状態に更新）。実際にはデータベース上の会員レコードは削除されない（論理削除）。
+    reset_session #セッション情報をリセット（個人情報やアクション履歴の情報をリセット）
+    flash[:notice] = "退会しました"
+    redirect_to new_customer_registration_path
   end
 
   private

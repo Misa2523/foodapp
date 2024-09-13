@@ -15,13 +15,15 @@
         <% @customers.each do |customer| %>
 
           <% unless customer.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
-            <tr>
-              <td>
-                <%= link_to posts_index_customers_path(customer.id), style: "color: black; text-decoration: underline;" do %>
-                  <%= customer.name %>
-                <% end %>
-              </td>
-            </tr>
+            <% unless customer.is_active == false %> <!--退会している会員でなければ表示-->
+              <tr>
+                <td>
+                  <%= link_to posts_index_customers_path(customer.id), style: "color: black; text-decoration: underline;" do %>
+                    <%= customer.name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
 
         <% end %>
