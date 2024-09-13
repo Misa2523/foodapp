@@ -1,5 +1,7 @@
 class Public::CustomersController < ApplicationController
 
+  before_action :ensure_guest_user, only: [:index, :posts_index, :show, :edit, :check]
+
   def index
     @customers = Customer.all.page(params[:page]).per(10)
   end
@@ -45,6 +47,15 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :name_kana, :telephone_number, :email, :is_active)
+  end
+
+  #ゲストユーザーによる、会員一覧/特定の会員一覧ページ、マイページ、マイプロフィール編集ページ、退会ページへURL直打ちでの遷移を制限
+  def ensure_guest_user
+    @customer = current_customer
+    if @customer.email == "guest@example.com"
+      flash[:notice] = "ゲストユーザーはご指定のページへは遷移できません"
+      redirect_to root_path
+    end
   end
 
 end

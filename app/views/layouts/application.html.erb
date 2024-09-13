@@ -15,23 +15,27 @@
       <div class="d-flex justofy-content-between align-items-center mb-4">
 
         <% if customer_signed_in? %> <!--会員がサインインしてる場合-->
-          <%= link_to "フードロス削減アプリケーション", admin_path, class: "navbar-brand" %>
+          <%= link_to "フードロス削減アプリケーション", root_path, class: "navbar-brand" %>
           <div>
             <nav class="mb-2">
               <ul class="navbar-nav list-group-horizontal">
-                <li class="nav-item"><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "食材保存場所一覧", food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
-                <li class="nav-item"><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <li class="nav-item"><%= link_to "みんなの投稿一覧", cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
-                <li class="nav-item"><%= link_to "自分の投稿一覧", posts_index_customers_path(current_customer.id), class: "btn btn-outline-secondary mr-3" %></li>
-                <li class="nav-item"><%= link_to "通知", notifications_path, class: "btn btn-outline-secondary mr-3" %></li>
-                <li class="nav-item"><%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary mr-3" %></li>
+
+                <% unless guest? %> <!--application_controllerに記述したメソッド呼び出し（ゲストユーザーでなければ表示）-->
+                  <li class="nav-item"><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "自分の投稿一覧", posts_index_customers_path(current_customer.id), class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "通知", notifications_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <% end %>
+
                 <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, class: "btn btn-outline-secondary mr-3", method: :delete %></li>
               </ul>
             </nav>
           </div>
         <% elsif admin_signed_in? %> <!--管理者がサインインしてる場合-->
-          <%= link_to "フードロス削減アプリケーション", root_path, class: "navbar-brand" %>
+          <%= link_to "フードロス削減アプリケーション", admin_path, class: "navbar-brand" %>
           <div>
             <nav class="mb-2">
               <ul class="navbar-nav list-group-horizontal">
