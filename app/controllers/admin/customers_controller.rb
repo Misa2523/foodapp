@@ -4,6 +4,10 @@ class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
 
   def posts_index
+    @customer = Customer.find(params[:id])
+    @cooking_posts = @customer.cooking_posts #会員に紐づく料理投稿を取得（idで指定された会員の投稿のみ表示するため定義）
+
+    @customers = Customer.all.page(params[:page]).per(10) #ページネーション用に定義
   end
 
   def show
