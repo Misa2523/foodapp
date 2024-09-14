@@ -1,6 +1,9 @@
+include ApplicationHelper #ApplicationHelperモジュールを読み込む
+
 class Public::CustomersController < ApplicationController
 
-  before_action :ensure_guest_user, only: [:index, :posts_index, :show, :edit, :check]
+  #helpers/application_helper.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限
+  before_action :ensure_guest_user, only: [:index, :posts_index, :show, :edit, :check, :update, :out]
 
   def index
     @customers = Customer.all.page(params[:page]).per(10)
@@ -47,15 +50,6 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :name_kana, :telephone_number, :email, :is_active)
-  end
-
-  #ゲストユーザーによる、会員一覧/特定の会員一覧ページ、マイページ、マイプロフィール編集ページ、退会ページへURL直打ちでの遷移を制限
-  def ensure_guest_user
-    @customer = current_customer
-    if @customer.email == "guest@example.com"
-      flash[:notice] = "ゲストユーザーはご指定のページへは遷移できません"
-      redirect_to root_path
-    end
   end
 
 end
