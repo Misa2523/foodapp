@@ -1,1 +1,48 @@
-<h1>管理者トップページ（会員一覧ページ） 22P</h1>
+管理者トップページ（会員一覧ページ） 22P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>会員一覧</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>会員ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+
+          <% unless customer.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
+            <tr>
+              <td><%= customer.id %></td>
+              <td>
+                <%= link_to posts_index_customers_path(customer.id), style: "color: black; text-decoration: underline;" do %>
+                  <%= customer.name %>
+                <% end %>
+              </td>
+              <td><%= customer.email %></td>
+              <td>
+                <% if customer.is_active == true %><!--会員ステータスが有効なら-->
+                  <p class="text-success font-weight-bold">有効</p>
+                <% else %>
+                  <p class="text-danger font-weight-bold">退会</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= paginate @customers, class: "pagination" %>
+    </div>
+  </div>
+</div>
