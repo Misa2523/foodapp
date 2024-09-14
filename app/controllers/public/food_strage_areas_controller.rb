@@ -1,7 +1,7 @@
 class Public::FoodStrageAreasController < ApplicationController
 
-  #application_controller.rbで定義したメソッドを実行（ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限
-  before_action :restricted_not_login_user, only: [:index]
+  #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（全てのアクションに対し）
+  before_action :authenticate_customer!
 
   def index
     @food_strage_areas = FoodStrageArea.all.page(params[:page]).per(10)
