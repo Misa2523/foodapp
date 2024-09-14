@@ -3,7 +3,7 @@ include ApplicationHelper #ApplicationHelperモジュールを読み込む
 class Public::CustomersController < ApplicationController
 
   #helpers/application_helper.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限
-  before_action :ensure_guest_user, only: [:index, :posts_index, :show, :edit, :check, :update, :out]
+  before_action :restricted_guest_user, only: [:index, :posts_index, :show, :edit, :check, :update, :out]
 
   def index
     @customers = Customer.all.page(params[:page]).per(10)
