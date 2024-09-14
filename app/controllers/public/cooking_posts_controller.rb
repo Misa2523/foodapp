@@ -1,6 +1,9 @@
 class Public::CookingPostsController < ApplicationController
 
+  before_action :authenticate_customer!, except: [:index] #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（indexを除く）
+
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :restricted_guest_user, only: [:new, :create] #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限
 
   def new
     @cooking_post = CookingPost.new
@@ -28,7 +31,7 @@ class Public::CookingPostsController < ApplicationController
 
   def show
     @cooking_post = CookingPost.find(params[:id])
-    @user = @cooking_post.customer
+    @customer = @cooking_post.customer
   end
 
   def edit
@@ -65,11 +68,11 @@ class Public::CookingPostsController < ApplicationController
     params.require(:cooking_post).permit(:cooking_post_image, :customer_id, :name, :introduction)
   end
 
-  #ログインユーザーがその投稿の投稿者か判断するメソッド（自分以外が処理を実行できないようにする）
+  #ログインユーザーがその投稿の投稿者か判断するメソッド（自分以外が処理を実行できないように、URL直打ちで遷移できないようにする）
   def is_matching_login_user
     @cooking_post = CookingPost.find(params[:id])
-    @user = @cooking_post.customer
-    unless @user.id == current_customer.id
+    @customer = @cooking_post.customer
+    unless @customer.id == current_customer.id
       redirect_to cooking_posts_path
     end
   end

@@ -14,13 +14,17 @@
     <h4><strong>最新投稿</strong></h4>
   </div>
   <div class="row pt-3 justify-content-center">
-    <% @cooking_posts.first(4).each do |post| %>
-      <div>
-        <%= link_to cooking_post_path(post) do %>
-          <div><%= image_tag post.get_cooking_post_image(200, 200) %></div>
-          <p><%= post.name %></p>
-        <% end %>
-      </div>
+    <% @cooking_posts.first(4).each do |cooking_post| %>
+
+      <% unless cooking_post.customer.is_active == false %> <!--退会している会員でなければ表示-->
+        <div>
+          <%= link_to cooking_post_path(cooking_post) do %>
+            <div><%= image_tag cooking_post.get_cooking_post_image(200, 200) %></div>
+            <p><%= cooking_post.name %></p>
+          <% end %>
+        </div>
+      <% end %>
+
     <% end %>
   </div>
 </div>
