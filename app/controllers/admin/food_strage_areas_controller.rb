@@ -1,5 +1,8 @@
 class Admin::FoodStrageAreasController < ApplicationController
 
+  #管理者ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（全てのアクションに対し）
+  before_action :authenticate_admin!
+
   def new
     @food_strage_area = FoodStrageArea.new
   end

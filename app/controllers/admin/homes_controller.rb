@@ -1,7 +1,8 @@
 class Admin::HomesController < ApplicationController
-  
-  before_action :autenticate_admin! #adminとしてログインしている場合のみアクセスする
-  
+
+  #管理者ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（全てのアクションに対し）
+  before_action :authenticate_admin!
+
   def top
   end
 end
