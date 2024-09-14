@@ -18,7 +18,7 @@
             <% unless customer.is_active == false %> <!--退会している会員でなければ表示-->
               <tr>
                 <td>
-                  <%= link_to posts_index_customers_path(customer.id), style: "color: black; text-decoration: underline;" do %>
+                  <%= link_to posts_index_customers_path(customer), style: "color: black; text-decoration: underline;" do %>
                     <%= customer.name %>
                   <% end %>
                 </td>

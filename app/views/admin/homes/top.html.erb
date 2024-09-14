@@ -21,13 +21,13 @@
             <tr>
               <td><%= customer.id %></td>
               <td>
-                <%= link_to posts_index_customers_path(customer.id), style: "color: black; text-decoration: underline;" do %>
+                <%= link_to admin_customer_path(customer), style: "color: black; text-decoration: underline;" do %>
                   <%= customer.name %>
                 <% end %>
               </td>
               <td><%= customer.email %></td>
               <td>
-                <% if customer.is_active == true %><!--会員ステータスが有効なら-->
+                <% if customer.is_active == true %> <!--会員ステータスが有効なら-->
                   <p class="text-success font-weight-bold">有効</p>
                 <% else %>
                   <p class="text-danger font-weight-bold">退会</p>

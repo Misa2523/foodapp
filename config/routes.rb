@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     resources :food_strage_areas, only: [:new, :create, :index, :destroy, :edit, :update]
     resources :cooking_posts, only: [:index, :show]
 
-    get 'customers/:id/cooking_posts' => 'admin/customers#posts_index', as: "customers_posts_index"
+    get 'customers/:id/cooking_posts' => 'customers#posts_index', as: "customers_posts_index"
     resources :customers, only: [:show, :edit, :update]
   end
 

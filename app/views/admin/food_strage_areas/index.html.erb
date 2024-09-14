@@ -22,8 +22,8 @@
             <td><%= food_strage_area.name %></td>
             <td><%= food_strage_area.place %></td>
             <td>
-              <%= link_to "編集", edit_admin_food_strage_area_path(food_strage_area), class: "btn btn-outline-success", style: "font-weight: bold;" %>
-              <%= button_to "削除", admin_food_strage_area_path(food_strage_area), method: :delete, class: "btn btn-danger", data: {confirm: '本当に削除しますか？'} %>
+              <%= link_to "編集", edit_admin_food_strage_area_path(food_strage_area), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
+              <%= button_to "削除", admin_food_strage_area_path(food_strage_area), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
             </td>
           </tr>
         <% end %>
