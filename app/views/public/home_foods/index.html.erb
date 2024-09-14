@@ -30,8 +30,8 @@
               <td><%= home_food.best_before_date.present? ? home_food.best_before_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
               <td><%= home_food.created_at.strftime("%Y/%m/%d") %></td> <!--年月日のみ表示-->
               <td>
-                <%= link_to "編集", edit_home_food_path(home_food), class: "btn btn-outline-success", style: "font-weight: bold;" %>
-                <%= button_to "削除", home_food_path(home_food), method: :delete, class: "btn btn-danger", data: {confirm: '本当に削除しますか？'} %>
+                <%= link_to "編集", edit_home_food_path(home_food), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
+                <%= button_to "削除", home_food_path(home_food), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
               </td>
             </tr>
           <% end %>
