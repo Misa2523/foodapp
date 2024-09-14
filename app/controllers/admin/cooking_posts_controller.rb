@@ -4,8 +4,11 @@ class Admin::CookingPostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    @cooking_posts = CookingPost.all.page(params[:page]).per(10)
   end
 
   def show
+    @cooking_post = CookingPost.find(params[:id])
+    @customer = @cooking_post.customer
   end
 end
