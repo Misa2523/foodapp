@@ -1,52 +1,67 @@
-<h1>会員登録ページ 4P</h1>
+<!--会員登録ページ 4P-->
+<div class="container">
 
-<h2>新規会員登録</h2>
-
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%#= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :"氏名" %>
-    <%#= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "氏名" %>
-    <%= f.text_field :name, autofocus: true, required: true, autocomplete: "name", placeholder: "氏名" %>
-  </div>
-  <div class="field">
-    <%= f.label :"フリガナ" %>
-    <%#= f.text_field :name_kana, autocomplete: "name_kana", placeholder: "シメイ" %>
-    <%= f.text_field :name_kana, required: true, autocomplete: "name_kana", placeholder: "シメイ" %>
-  </div>
-  <div class="field">
-    <%= f.label :"メールアドレス" %>
-    <%#= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %>
-    <%= f.email_field :email, required: true, autocomplete: "email", placeholder: "sample@example.com" %>
-  </div>
-  <div class="field">
-    <%= f.label :"電話番号(ハイフンなし)" %>
-    <%#= f.text_field :telephone_number, autocomplete: "telephone_number", placeholder: "00000000000" %>
-    <%= f.text_field :telephone_number, required: true, autocomplete: "telephone_number", placeholder: "00000000000" %>
+  <div class="row py-5">
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>新規会員登録</strong></h4>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :"パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上)</em>
-    <% end %>
-    <%#= f.password_field :password, autocomplete: "new-password" %>
-    <%= f.password_field :password, required: true, autocomplete: "new-password" %>
+  <%= form_with model: @customer, url: customer_registration_path do |f| %>
+    <%#= render "public/shared/error_messages", resource: resource %>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"氏名" %></div>
+      <div class="col-3 p-0"><%= f.text_field :name, autofocus: true, required: true, autocomplete: "name", placeholder: "氏名" %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"フリガナ" %></div>
+      <div class="col-3 p-0"><%= f.text_field :name_kana, required: true, autocomplete: "name_kana", placeholder: "シメイ" %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"メールアドレス" %></div>
+      <div class="col-3 p-0"><%= f.email_field :email, required: true, autocomplete: "email", placeholder: "sample@example.com" %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"電話番号(ハイフンなし)" %></div>
+      <div class="col-3 p-0"><%= f.text_field :telephone_number, required: true, autocomplete: "telephone_number", placeholder: "00000000000" %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1">
+        <%= f.label :"パスワード" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
+        <% end %>
+      </div>
+      <div class="col-3 p-0">
+        <%= f.password_field :password, required: true, autocomplete: "new-password" %>
+      </div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"パスワード(確認用)" %></div>
+      <div class="col-3 p-0"><%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 offset-4"><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold; background-color: rgba(46, 204, 113, 0.5);" %></div>
+    </div>
+
+  <% end %>
+
+  <div class="row py-3">
+    <div class="col-md-5 text-center">
+      <p class="d-inline px-3" style="border-bottom: 1px solid;">既に登録済みの方</p>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :"パスワード(確認用)" %>
-    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
+  <div class="row pb-2">
+    <div class="col-3 text-right offset-1"><%= link_to "ログインはこちら", new_customer_session_path %></div>
+    <div class="col-3 p-0"><%= button_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %></div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %>
-  </div>
-<% end %>
-
-<br>
-<p>既に登録済みの方</p>
-<%= link_to "ログインはこちら", new_customer_session_path %>
-<%= button_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %>
+</div>
