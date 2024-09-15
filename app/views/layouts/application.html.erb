@@ -36,7 +36,7 @@
               <div class="d-flex"> <!--ul要素を右寄せにする-->
                 <ul class="nav">
                   <% unless guest? %> <!--helpers/application_helper.rbに記述したメソッド呼び出し（ゲストユーザーでなければ表示）-->
-                    <li class="nav-item">
+                    <li class="nav-item mr-3">
                       <%= link_to notifications_path, style: "text-decoration: none; color: #404040;" do %>
                         <div style="text-align: center;">
                           <i class="fa-solid fa-bell" style="font-size: 2em;"></i>
@@ -44,7 +44,7 @@
                         </div>
                       <% end %>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mr-3">
                       <%= link_to customers_my_page_path, style: "text-decoration: none; color: #404040;" do %>
                         <div style="text-align: center;">
                           <i class="fa-solid fa-circle-user" style="font-size: 2em;"></i>
@@ -53,7 +53,7 @@
                       <% end %>
                     </li>
                   <% end %>
-                  <li>
+                  <li class="nav-item mr-3">
                     <%= link_to destroy_customer_session_path, method: :delete, style: "text-decoration: none; color: #404040;" do %>
                       <div style="text-align: center;">
                         <i class="fa-solid fa-right-from-bracket" style="font-size: 2em;"></i>
@@ -72,12 +72,12 @@
         <div class="px-3 py-2 border-bottom" style="border-bottom: 1px solid #404040 !important;">
           <div class="container">
               <ul class="nav justify-content-center">
-                <li><%= link_to "食材保存場所一覧", food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
-                <li><%= link_to "みんなの投稿一覧", cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "食材保存場所一覧", food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "みんなの投稿一覧", cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
                 <% unless guest? %> <!--helpers/application_helper.rbに記述したメソッド呼び出し（ゲストユーザーでなければ表示）-->
-                  <li><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "自分の投稿一覧", posts_index_customers_path(current_customer.id), class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "自分の投稿一覧", posts_index_customers_path(current_customer.id), class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary" %></li>
                 <% end %>
               </ul>
           </div>
@@ -108,7 +108,7 @@
                   <li><%= link_to "投稿一覧", admin_cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "食材保存場所一覧", admin_food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
                 </ul>
               </div>
 
@@ -137,7 +137,7 @@
               <!--ヘッダー上段の右側 -->
               <div class="d-flex"> <!--ul要素を右寄せにする-->
                 <ul class="nav">
-                  <li>
+                  <li class="nav-item mr-3">
                     <%= link_to about_path, style: "text-decoration: none; color: #404040;" do %>
                       <div style="text-align: center;">
                         <i class="fa-solid fa-circle-info" style="font-size: 2em;"></i>
@@ -145,7 +145,7 @@
                       </div>
                     <% end %>
                   </li>
-                  <li>
+                  <li class="nav-item mr-3">
                     <%= link_to new_customer_registration_path, style: "text-decoration: none; color: #404040;" do %>
                       <div style="text-align: center;">
                         <i class="fa-solid fa-user-plus" style="font-size: 2em;"></i>
@@ -153,7 +153,7 @@
                       </div>
                     <% end %>
                   </li>
-                  <li>
+                  <li class="nav-item mr-3">
                     <%= link_to new_customer_session_path, style: "text-decoration: none; color: #404040;" do %>
                       <div style="text-align: center;">
                         <i class="fa-solid fa-right-to-bracket" style="font-size: 2em;"></i>
