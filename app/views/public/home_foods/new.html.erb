@@ -1,41 +1,43 @@
-家庭内食材新規登録ページ 8P
-
+<!--家庭内食材新規登録ページ 8P-->
 <div class="container">
+
   <div class="row pt-5">
-    <h4><strong>食材の新規登録</strong></h4>
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>食材の新規登録</strong></h4>
+    </div>
   </div>
-  <div class="row pt-3 justify-content-center">
-    <%= form_with model: @home_food, url: home_foods_path do |f| %>
-      <table>
-        <tbody>
-          <tr>
-            <td><label>食材名</label></td>
-            <td><%= f.text_field :name, autofocus: true, placeholder: "豆腐" %></td>
-          </tr>
-          <tr>
-            <td><label>量</label></td>
-            <td><%= f.text_field :amount, placeholder: "1丁" %></td>
-          </tr>
-          <tr>
-            <td colspan="4">
-              <p style="font-size: smaller; color: gray;">※期限は食材に記載のある方を入力してください。（どちらもない場合は未入力でOKです。）</p><!--注釈-->
-              <label>消費期限</label>
-              <%= f.date_field :expiration_date %> <!--カレンダー入力-->
-              <label>賞味期限</label>
-              <%= f.date_field :best_before_date %>
-            </td>
-          </tr>
-          <tr>
-            <td><label>ジャンル</label></td>
-            <td>
-              <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %> <!--セレクトボックス-->
-            </td>
-          </tr>
-          <tr>
-            <td><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %></td>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+
+  <%= form_with model: @home_food, url: home_foods_path do |f| %>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"食材名" %></div>
+      <div class="col-3 p-0"><%= f.text_field :name, autofocus: true, placeholder: "豆腐" %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"量" %></div>
+      <div class="col-3 p-0"><%= f.text_field :amount, placeholder: "1丁" %></div>
+    </div>
+
+    <div class="row">
+      <p class="col-12 text-center" style="font-size: smaller; color: gray;">※期限は食材に記載のある方を入力してください。（どちらもない場合は未入力でOKです。）</p><!--注釈-->
+    </div>
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"消費期限" %></div>
+      <div class="col-1 p-0"><%= f.date_field :expiration_date %></div> <!--カレンダー入力-->
+      <div class="col-1 text-right offset-1"><%= f.label :"賞味期限" %></div>
+      <div class="col-1 p-0"><%= f.date_field :best_before_date %></div> <!--カレンダー入力-->
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 text-right offset-1"><%= f.label :"ジャンル" %></div>
+      <div class="col-3 p-0"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %></div> <!--セレクトボックス-->
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-3 offset-4"><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %></div>
+    </div>
+
+  <% end %>
+
 </div>
