@@ -11,57 +11,57 @@
     <%#= render "public/shared/error_messages", resource: resource %>
 
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1"><%= f.label :"氏名" %></div>
-      <div class="col-3 p-0"><%= f.text_field :name, autofocus: true, required: true, autocomplete: "name", placeholder: "氏名" %></div>
+      <div class="col-4 text-right offset-1"><%= f.label :"氏名" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name, autofocus: true, required: true, autocomplete: "name", placeholder: "氏名" %></div>
     </div>
 
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1"><%= f.label :"フリガナ" %></div>
-      <div class="col-3 p-0"><%= f.text_field :name_kana, required: true, autocomplete: "name_kana", placeholder: "シメイ" %></div>
+      <div class="col-4 text-right offset-1"><%= f.label :"フリガナ" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name_kana, required: true, autocomplete: "name_kana", placeholder: "シメイ" %></div>
     </div>
 
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1"><%= f.label :"メールアドレス" %></div>
-      <div class="col-3 p-0"><%= f.email_field :email, required: true, autocomplete: "email", placeholder: "sample@example.com" %></div>
+      <div class="col-4 text-right offset-1"><%= f.label :"メールアドレス" %></div>
+      <div class="col-5 p-0"><%= f.email_field :email, required: true, autocomplete: "email", placeholder: "sample@example.com" %></div>
     </div>
 
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1"><%= f.label :"電話番号(ハイフンなし)" %></div>
-      <div class="col-3 p-0"><%= f.text_field :telephone_number, required: true, autocomplete: "telephone_number", placeholder: "00000000000" %></div>
+      <div class="col-4 text-right offset-1"><%= f.label :"電話番号(ハイフンなし)" %></div>
+      <div class="col-5 p-0"><%= f.text_field :telephone_number, required: true, autocomplete: "telephone_number", placeholder: "00000000000" %></div>
     </div>
 
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1">
+      <div class="col-4 text-right offset-1">
         <%= f.label :"パスワード" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %>
       </div>
-      <div class="col-3 p-0">
+      <div class="col-5 p-0">
         <%= f.password_field :password, required: true, autocomplete: "new-password" %>
       </div>
     </div>
 
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1"><%= f.label :"パスワード(確認用)" %></div>
-      <div class="col-3 p-0"><%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %></div>
+      <div class="col-4 text-right offset-1"><%= f.label :"パスワード(確認用)" %></div>
+      <div class="col-5 p-0"><%= f.password_field :password_confirmation, required: true, autocomplete: "new-password" %></div>
     </div>
 
     <div class="row pb-2">
-      <div class="col-3 offset-4"><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold; background-color: rgba(46, 204, 113, 0.5);" %></div>
+      <div class="col-4 offset-4 text-center"><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold; background-color: rgba(46, 204, 113, 0.5);" %></div>
     </div>
 
   <% end %>
 
   <div class="row py-3">
-    <div class="col-md-5 text-center">
+    <div class="col-md-6 text-center">
       <p class="d-inline px-3" style="border-bottom: 1px solid;">既に登録済みの方</p>
     </div>
   </div>
 
   <div class="row pb-2">
-    <div class="col-3 text-right offset-1"><%= link_to "ログインはこちら", new_customer_session_path %></div>
-    <div class="col-3 p-0"><%= button_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %></div>
+    <div class="col-4 text-right offset-1"><%= link_to "ログインはこちら", new_customer_session_path %></div>
+    <div class="col-5 p-0"><%= button_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "btn btn-secondary" %></div>
   </div>
 
 </div>

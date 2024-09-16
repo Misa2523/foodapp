@@ -11,21 +11,21 @@
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"料理画像" %></div>
-      <div class="col-3 p-0"><%= f.file_field :cooking_post_image, accept: "image/*" %></div>
+      <div class="col-5 p-0"><%= f.file_field :cooking_post_image, accept: "image/*" %></div>
     </div>
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"料理名" %></div>
-      <div class="col-3 p-0"><%= f.text_field :name, style: "width: 100%;" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name, style: "width: 100%;" %></div>
     </div>
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"紹介文" %></div>
-      <div class="col-3 p-0"><%= f.text_area :introduction, rows: 5, style: "width: 100%;" %></div>
+      <div class="col-5 p-0"><%= f.text_area :introduction, rows: 5, style: "width: 100%;" %></div>
     </div>
 
-    <div class="row pb-2">
-      <div class="col-3 offset-4"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></div>
+    <div class="row pt-2 pb-2">
+      <div class="col-4 offset-4 text-center"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></div>
     </div>
 
   <% end %>
