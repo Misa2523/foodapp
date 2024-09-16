@@ -8,18 +8,18 @@
   </div>
 
    <div class="row my-4">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-6 mx-auto">
       <div class="table-responsive">
         <table class="table">
           <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr>
+            <tr class="text-center">
               <th>食材名</th>
               <th>保存場所</th>
             </tr>
           </thead>
           <tbody>
             <% @food_strage_areas.each do |food_strage_area| %>
-              <tr>
+              <tr class="text-center">
                 <td><%= food_strage_area.name %></td>
                 <td><%= food_strage_area.place %></td>
               </tr>
@@ -33,7 +33,7 @@
   <div class="row">
     <div class="col">
       <div style="display: flex; justify-content: center;">
-        <%= paginate  @food_strage_areas, class: "pagination" %>
+        <%= paginate @food_strage_areas, class: "pagination" %>
       </div>
     </div>
   </div>

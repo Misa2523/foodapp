@@ -18,7 +18,7 @@
       <div class="table-responsive">
         <table class="table">
           <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr>
+            <tr class="text-center">
               <th>食材名</th>
               <th>量</th>
               <th>消費期限</th>
@@ -31,7 +31,7 @@
             <% @home_foods.each do |home_food| %>
 
               <% if home_food.customer == current_customer %> <!--ログインユーザーが食材の登録者なら表示-->
-                <tr>
+                <tr class="text-center">
                   <td><%= home_food.name %></td>
                   <td><%= home_food.amount %></td>
                   <td><%= home_food.expiration_date.present? ? home_food.expiration_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
