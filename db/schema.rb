@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_06_091213) do
+ActiveRecord::Schema.define(version: 2024_09_16_115037) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2024_09_06_091213) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_cooking_posts_on_customer_id"
-    t.index ["introduction"], name: "index_cooking_posts_on_introduction"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -95,13 +94,13 @@ ActiveRecord::Schema.define(version: 2024_09_06_091213) do
 
   create_table "home_foods", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "genre_id", null: false
     t.string "name", null: false
-    t.integer "amount", null: false
+    t.string "amount", null: false
     t.date "expiration_date"
     t.date "best_before_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id", null: false
     t.index ["best_before_date"], name: "index_home_foods_on_best_before_date"
     t.index ["customer_id"], name: "index_home_foods_on_customer_id"
     t.index ["expiration_date"], name: "index_home_foods_on_expiration_date"
