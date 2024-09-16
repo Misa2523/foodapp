@@ -1,0 +1,41 @@
+ジャンル一覧・追加ページ 31P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong>ジャンル一覧・追加</strong></h4>
+  </div>
+  <div class="row pt-3">
+    <%= form_with model: @genre, url: admin_genres_path do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td><label>ジャンル名</label></td>
+            <td><%= f.text_field :name, placeholder: "ジャンル名" %></td>
+            <td><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>ジャンル名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.name %></td>
+            <td>
+              <%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
+              <%= button_to "削除", admin_genre_path(genre), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

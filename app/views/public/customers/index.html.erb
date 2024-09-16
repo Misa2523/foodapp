@@ -1,0 +1,51 @@
+<!--会員一覧ページ 11P-->
+<div class="container">
+
+  <div class="row pt-5">
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>会員一覧</strong></h4>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col-md-6 mx-auto">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
+            <tr>
+              <th class="text-center">氏名</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @customers.each do |customer| %>
+
+              <% unless customer.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
+                <% unless customer.is_active == false %> <!--退会している会員でなければ表示-->
+                  <tr>
+                    <td class="text-center">
+                      <%= link_to posts_index_customers_path(customer), style: "color: black; text-decoration: underline;" do %>
+                        <%= customer.name %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div style="display: flex; justify-content: center;">
+        <%= paginate @customers, class: "pagination" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

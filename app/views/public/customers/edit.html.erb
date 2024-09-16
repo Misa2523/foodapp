@@ -1,0 +1,43 @@
+<!--マイプロフィール編集ページ 19P-->
+<div class="container">
+
+  <div class="row pt-5">
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>マイプロフィール編集</strong></h4>
+    </div>
+  </div>
+
+  <%= form_with model: @customer, url: customers_information_path do |f| %>
+
+    <div class="row pt-3 pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"氏名" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name, autofocus: true %></div>
+    </div>
+
+    <div class="row pt-3 pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"フリガナ" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name_kana %></div>
+    </div>
+
+    <div class="row pt-3 pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"メールアドレス" %></div>
+      <div class="col-5 p-0"><%= f.email_field :email %></div>
+    </div>
+
+    <div class="row pt-3 pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"電話番号" %></div>
+      <div class="col-5 p-0"><%= f.text_field :telephone_number %></div>
+    </div>
+
+    <div class="row pt-2 pb-2">
+      <div class="col-4 offset-4 text-center">
+        <%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %>
+      </div>
+      <div class="col-4 text-center">
+        <%= link_to "退会する", customers_check_path, class: "btn btn-outline-danger", style: "font-weight: bold;" %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_05_230310) do
+ActiveRecord::Schema.define(version: 2024_09_06_091213) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,91 @@ ActiveRecord::Schema.define(version: 2024_09_05_230310) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cooking_posts", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_cooking_posts_on_customer_id"
+    t.index ["introduction"], name: "index_cooking_posts_on_introduction"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "name", null: false
+    t.string "name_kana", null: false
+    t.string "telephone_number", null: false
+    t.boolean "is_active", default: true, null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["name"], name: "index_customers_on_name"
+    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "food_strage_areas", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "place", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_genres_on_name"
+  end
+
+  create_table "home_foods", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "genre_id", null: false
+    t.string "name", null: false
+    t.integer "amount", null: false
+    t.date "expiration_date"
+    t.date "best_before_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["best_before_date"], name: "index_home_foods_on_best_before_date"
+    t.index ["customer_id"], name: "index_home_foods_on_customer_id"
+    t.index ["expiration_date"], name: "index_home_foods_on_expiration_date"
+    t.index ["genre_id"], name: "index_home_foods_on_genre_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "home_food_id", null: false
+    t.boolean "read", default: false, null: false
+    t.string "message", null: false
+    t.string "notification_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_notifications_on_customer_id"
+    t.index ["home_food_id"], name: "index_notifications_on_home_food_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cooking_posts", "customers"
+  add_foreign_key "home_foods", "customers"
+  add_foreign_key "home_foods", "genres"
+  add_foreign_key "notifications", "customers"
+  add_foreign_key "notifications", "home_foods"
 end

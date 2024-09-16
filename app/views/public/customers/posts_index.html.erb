@@ -1,0 +1,57 @@
+<!--特定の会員（or自分）の投稿一覧ページ 14P-->
+<div class="container">
+
+  <div class="row pt-5">
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong><%= @customer.name %>さんの投稿一覧</strong></h4>
+    </div>
+  </div>
+
+  <% if @customer.id == current_customer.id %> <!--ログインユーザーの投稿一覧ページだったら表示-->
+    <div class="row py-3">
+      <div class="col-md-9 text-right">
+        <%= link_to "新規登録", new_cooking_post_path, class: "btn btn-outline-success", style: "font-weight: bold;" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row my-4">
+    <div class="col-md-9 mx-auto">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
+            <tr class="text-center">
+              <th>画像</th>
+              <th>料理名</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cooking_posts.each do |cooking_post| %>
+
+              <% unless cooking_post.customer.is_active == false %> <!--退会している会員でなければ表示-->
+                <tr class="text-center">
+                  <td><%= image_tag cooking_post.get_cooking_post_image(70, 70) %></td>
+                  <td>
+                    <%= link_to cooking_post_path(cooking_post.id), style: "color: black; text-decoration: underline;" do %>
+                      <%= cooking_post.name %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div style="display: flex; justify-content: center;">
+        <%= paginate @customers, class: "pagination" %>
+      </div>
+    </div>
+  </div>
+
+</div>

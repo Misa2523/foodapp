@@ -1,0 +1,2 @@
+module Public::HomeFoodsHelper
+end

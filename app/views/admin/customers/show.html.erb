@@ -1,0 +1,49 @@
+会員情報詳細ページ 23P
+
+<div class="container">
+  <div class="row pt-5">
+    <h4><strong><%= @customer.name %>さんの会員詳細</strong></h4>
+  </div>
+  <div class="row pt-3 justify-content-center">
+    <table>
+      <tbody>
+        <tr>
+          <td><label>会員ID</label></td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td><label>氏名</label></td>
+          <td><%= @customer.name %></td>
+        </tr>
+        <tr>
+          <td><label>フリガナ</label></td>
+          <td><%= @customer.name_kana %></td>
+        </tr>
+        <tr>
+          <td><label>メールアドレス</label></td>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td><label>電話番号</label></td>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td><label>会員ステータス</label></td>
+          <td>
+            <% if @customer.is_active == true %> <!--会員ステータスが有効なら-->
+              <p class="text-success font-weight-bold" style="vertical-align: middle;">有効</p>
+            <% else %>
+              <p class="text-danger font-weight-bold">退会</p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to '編集する', edit_admin_customer_path(@customer), class: "btn btn-sm btn-outline-success"%>
+            <%= link_to '投稿一覧を見る', admin_customers_posts_index_path(@customer), class: "btn btn-sm btn-outline-primary"%>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
