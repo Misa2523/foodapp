@@ -34,7 +34,7 @@
       <div class="col-3 p-0"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %></div> <!--セレクトボックス-->
     </div>
 
-    <div class="row pb-2">
+    <div class="row pt-2 pb-2">
       <div class="col-3 offset-4 text-center"><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %></div>
     </div>
 
