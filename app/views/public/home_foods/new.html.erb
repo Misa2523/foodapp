@@ -9,7 +9,7 @@
 
   <%= form_with model: @home_food, url: home_foods_path do |f| %>
 
-    <div class="row pb-2">
+    <div class="row pt-3 pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"食材名" %></div>
       <div class="col-3 p-0"><%= f.text_field :name, autofocus: true, placeholder: "豆腐" %></div>
     </div>
