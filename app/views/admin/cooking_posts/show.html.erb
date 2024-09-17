@@ -1,27 +1,31 @@
-料理投稿詳細ページ 27P
-
+<!--料理投稿詳細ページ 27P-->
 <div class="container">
+
   <div class="row pt-5">
-    <h4><strong>料理投稿詳細</strong></h4>
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>料理投稿詳細</strong></h4>
+    </div>
   </div>
-  <div class="row pt-3 justify-content-center">
-    <div class="col-4">
+
+  <div class="row pt-3">
+    <div class="col-4 text-right">
       <div><%= image_tag @cooking_post.get_cooking_post_image(200, 200) %></div>
     </div>
+
     <div class="col-8">
-      <table>
-        <tbody>
-          <tr>
-            <td><label>料理名：<%= @cooking_post.name %></label></td>
-            <td><label>投稿者：<%= @customer.name %></label></td>
-          </tr>
-          <tr>
-            <td><label>紹介文</label></td>
-            <td><%= @cooking_post.introduction %></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row pb-2">
+        <div class="col-2 text-right"><strong>料理名</strong></div>
+        <div class="col-3"><%= @cooking_post.name %></div>
+        <div class="col-2 text-right"><strong>投稿者</strong></div>
+        <div class="col-3"><%= @customer.name %></div>
+      </div>
+
+      <div class="row pb-2">
+        <div class="col-2 text-right"><strong>紹介文</strong></div>
+        <div class="col-8" style="height: auto;"><%= simple_format(@cooking_post.introduction) %></div> <!--入力時の改行を反映-->
+      </div>
+
     </div>
   </div>
-</div>
 
+</div>
