@@ -54,7 +54,7 @@ class Public::CookingPostsController < ApplicationController
     @cooking_post = CookingPost.find(params[:id])
     if @cooking_post.destroy
       flash[:notice] = "料理情報が削除されました"
-      redirect_to cooking_posts_path
+      redirect_to posts_index_customers_path(current_customer.id) #自分の投稿一覧ページへ遷移
     else
       @cooking_post = CookingPost.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
       flash[:notice] = "料理の削除ができませんでした"

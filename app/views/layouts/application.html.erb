@@ -77,7 +77,8 @@
                 <% unless guest? %> <!--helpers/application_helper.rbに記述したメソッド呼び出し（ゲストユーザーでなければ表示）-->
                   <li class="nav-item"><%= link_to "会員一覧", customers_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li class="nav-item"><%= link_to "自分の投稿一覧", posts_index_customers_path(current_customer.id), class: "btn btn-outline-secondary mr-3" %></li>
-                  <li class="nav-item"><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary" %></li>
+                  <li class="nav-item"><%= link_to "家庭内食材一覧", home_foods_path, class: "btn btn-outline-secondary mr-3" %></li>
+                  <li class="nav-item"><%= link_to "料理の新規投稿", new_cooking_post_path, class: "btn btn-outline-secondary" %></li>
                 <% end %>
               </ul>
           </div>
