@@ -1,9 +1,9 @@
 class Public::CookingPostsController < ApplicationController
 
-  before_action :authenticate_customer!, except: [:index] #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（indexを除く）
+  before_action :authenticate_customer! #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（すべてアクセスできないよう設定）
 
+  before_action :restricted_guest_user, only: [:new, :create, :edit, :update, :destroy] #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限)
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
-  before_action :restricted_guest_user, only: [:new, :create] #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限
 
   def new
     @cooking_post = CookingPost.new

@@ -2,8 +2,8 @@ class Public::HomeFoodsController < ApplicationController
 
   before_action :authenticate_customer! #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（全てのアクションに対し）
 
+  before_action :restricted_guest_user #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限）すべてのアクションに対し
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
-  before_action :restricted_guest_user, only: [:index] #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限
 
   def new
     @home_food = HomeFood.new
