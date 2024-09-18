@@ -22,3 +22,6 @@ feature/guest-restrictions：ゲストユーザーによるプロフィール編
 
 feature/admin-customer-cookingpost：管理者トップページ（会員一覧ページ）の作成、管理者側の会員情報関連のページ作成、管理者側の料理投稿一覧/詳細ページ作成
 feature/layout-1：FontAwesome導入、ヘッダー調整、フェーズ１（1stデプロイ前）のレイアウト調整
+
+
+feature/admin-layout：管理者側のページのレイアウト調整、

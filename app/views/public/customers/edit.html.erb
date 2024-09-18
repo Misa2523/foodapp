@@ -14,26 +14,26 @@
       <div class="col-5 p-0"><%= f.text_field :name, autofocus: true %></div>
     </div>
 
-    <div class="row pt-3 pb-2">
+    <div class="row pb-2">
       <div class="col-4 text-right offset-1"><%= f.label :"フリガナ" %></div>
       <div class="col-5 p-0"><%= f.text_field :name_kana %></div>
     </div>
 
-    <div class="row pt-3 pb-2">
+    <div class="row pb-2">
       <div class="col-4 text-right offset-1"><%= f.label :"メールアドレス" %></div>
       <div class="col-5 p-0"><%= f.email_field :email %></div>
     </div>
 
-    <div class="row pt-3 pb-2">
+    <div class="row pb-2">
       <div class="col-4 text-right offset-1"><%= f.label :"電話番号" %></div>
       <div class="col-5 p-0"><%= f.text_field :telephone_number %></div>
     </div>
 
     <div class="row pt-2 pb-2">
-      <div class="col-4 offset-4 text-center">
+      <div class="col-6 text-right">
         <%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-6 text-left">
         <%= link_to "退会する", customers_check_path, class: "btn btn-outline-danger", style: "font-weight: bold;" %>
       </div>
     </div>

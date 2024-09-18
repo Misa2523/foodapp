@@ -9,7 +9,7 @@
 
   <%= form_with model: @cooking_post, url: cooking_posts_path do |f| %>
 
-    <div class="row pb-2">
+    <div class="row pt-3 pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"料理画像" %></div>
       <div class="col-5 p-0"><%= f.file_field :cooking_post_image, accept: "image/jpg" %></div>
     </div>

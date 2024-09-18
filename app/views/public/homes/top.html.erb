@@ -21,7 +21,7 @@
     <% @cooking_posts.first(4).each do |cooking_post| %>
 
       <% unless cooking_post.customer.is_active == false %> <!--退会している会員でなければ表示-->
-        <div>
+        <div class="text-center">
           <%= link_to cooking_post_path(cooking_post), style: "color: black; text-decoration: underline;" do %>
             <div><%= image_tag cooking_post.get_cooking_post_image(200, 200) %></div>
             <p><%= cooking_post.name %></p>

@@ -1,38 +1,56 @@
-食材保存場所一覧ページ 28P
-
+<!--食材保存場所一覧ページ 28P-->
 <div class="container">
+
   <div class="row pt-5">
-    <h4><strong>食材保存場所一覧</strong></h4>
-  </div>
-  <div class="row">
-    <%= link_to "新規登録", new_admin_food_strage_area_path, class: "btn btn-outline-success", style: "font-weight: bold;" %>
-  </div>
-  <div class="row pt-3 justify-content-center">
-    <table>
-      <thead>
-        <tr>
-          <th>食材名</th>
-          <th>保存場所</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @food_strage_areas.each do |food_strage_area| %>
-          <tr>
-            <td><%= food_strage_area.name %></td>
-            <td><%= food_strage_area.place %></td>
-            <td>
-              <%= link_to "編集", edit_admin_food_strage_area_path(food_strage_area), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
-              <%= button_to "削除", admin_food_strage_area_path(food_strage_area), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="row">
-    <div class="col">
-      <%= paginate @food_strage_areas, class: "pagination" %>
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>食材保存場所一覧</strong></h4>
     </div>
   </div>
+
+  <div class="row py-3">
+    <div class="col-md-9 text-right">
+      <%= link_to "新規登録", new_admin_food_strage_area_path, class: "btn btn-outline-success", style: "font-weight: bold;" %>
+    </div>
+  </div>
+
+   <div class="row my-4">
+    <div class="col-md-9 mx-auto">
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
+            <tr class="text-center">
+              <th>食材名</th>
+              <th>保存場所</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @food_strage_areas.each do |food_strage_area| %>
+              <tr class="text-center">
+                <td><%= food_strage_area.name %></td>
+                <td><%= food_strage_area.place %></td>
+                <td>
+                  <div style="display: inline-block;">
+                    <%= link_to "編集", edit_admin_food_strage_area_path(food_strage_area), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
+                  </div>
+                  <div class="ml-3" style="display: inline-block;">
+                    <%= button_to "削除", admin_food_strage_area_path(food_strage_area), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div style="display: flex; justify-content: center;">
+        <%= paginate @food_strage_areas, class: "pagination" %>
+      </div>
+    </div>
+  </div>
+
 </div>
