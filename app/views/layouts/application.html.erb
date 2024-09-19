@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <header style="background-color: #e0e0e0;">
+    <header style="background-color: #e0e0e0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
 
       <% if customer_signed_in? %> <!--会員がサインインしてる場合-->
         <!--ヘッダー上段-->
@@ -172,12 +172,13 @@
 
     </header>
 
-    <main>
+    <main style="margin-top: 100px;">
       <% flash.each do |message_type, message| %>
         <div class="flash-message <%= message_type %>"><%= message %></div> <!--フラッシュメッセージ表示-->
       <% end %>
+
+      <%= yield %>
     </main>
-    <%= yield %>
 
     <footer>
       <div class="container m-5" style="border-top: 2px double;">

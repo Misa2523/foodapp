@@ -27,13 +27,13 @@ feature/layout-1：FontAwesome導入、ヘッダー調整、フェーズ１（1s
 feature/admin-layout：管理者側のページのレイアウト調整
 feature/fix-1：1stテストで見つかった改善点の修正、
             退会ユーザーの投稿における非表示コードの修正(非表示ではなくwhereを使う：トップ/みんなの料理投稿一覧ページ)、
-            ヘッダーの固定、部分テンプレート化、登録画像における拡張子の指定(jpg以外は登録できないよう設定)
+            他ユーザーの登録した情報は無駄に取得しないよう修正(非表示ではなくwhereを使う：家庭内食材一覧ページ)、
+            退会している会員の情報は閲覧不可にする(URL直打ち対策：特定会員の投稿一覧ページ、投稿詳細ページ)、
+            ヘッダーの固定
 
 feature/keyword-search：キーワード検索機能の実装
 feature/genre-search：ジャンル検索機能の実装
 feature/sort：ソート機能の実装
 feature/layout-2：レイアウト調整
 
-
-.where.not(is_active: false)
-@trips = Trip.where.not(user_id: not_active_users).page(params[:page]).per(5)
+部分テンプレート化、登録画像における拡張子の指定(jpg以外は登録できないよう設定)
