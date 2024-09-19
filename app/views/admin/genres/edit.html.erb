@@ -13,7 +13,7 @@
         <tbody>
           <tr>
             <td class="pl-5"><%= f.label :"ジャンル名" %></td>
-            <td class="pl-1"><%= f.text_field :name, autofocus: true %></td>
+            <td class="pl-1"><%= f.text_field :name, required: true, autofocus: true %></td>
             <td class="pl-3"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></td>
           </tr>
         </tbody>
