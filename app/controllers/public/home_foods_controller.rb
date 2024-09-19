@@ -23,7 +23,8 @@ class Public::HomeFoodsController < ApplicationController
   end
 
   def index
-    @home_foods = HomeFood.all.page(params[:page]).per(10)
+    #ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
+    @home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).all.page(params[:page]).per(10)
   end
 
   def edit

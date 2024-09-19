@@ -29,8 +29,6 @@
           </thead>
           <tbody>
             <% @home_foods.each do |home_food| %>
-
-              <% if home_food.customer == current_customer %> <!--ログインユーザーが食材の登録者なら表示-->
                 <tr class="text-center">
                   <td><%= home_food.name %></td>
                   <td><%= home_food.amount %></td>
@@ -46,8 +44,6 @@
                     </div>
                   </td>
                 </tr>
-              <% end %>
-
             <% end %>
           </tbody>
         </table>

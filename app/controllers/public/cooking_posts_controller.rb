@@ -2,7 +2,10 @@ class Public::CookingPostsController < ApplicationController
 
   before_action :authenticate_customer! #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（すべてアクセスできないよう設定）
 
-  before_action :restricted_guest_user, only: [:new, :create, :edit, :update, :destroy] #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限)
+  before_action :restricted_guest_user, only: [:new, :create, :edit, :update, :destroy] #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限）
+
+  #private内で定義したメソッドを実行
+  before_action :cancel_membership, only: [:show] #退会している会員の投稿一覧ページは閲覧不可にする
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def new
@@ -24,7 +27,7 @@ class Public::CookingPostsController < ApplicationController
 
   def index
     #会員ステータスが有効である会員の投稿を取得（アソシエーションの関係はincludesで読み込み）
-    @cooking_posts = CookingPost.includes(:customer).where(customers: { is_active: true }).page(params[:page]).per(10)
+    @cooking_posts = CookingPost.includes(:customer).where(customers: { is_active: true }).order(created_at: :desc).page(params[:page]).per(10) #orderメソッドで投稿された順に並べる
   end
 
   def search
@@ -69,7 +72,17 @@ class Public::CookingPostsController < ApplicationController
     params.require(:cooking_post).permit(:cooking_post_image, :customer_id, :name, :introduction)
   end
 
-  #ログインユーザーがその投稿の投稿者か判断するメソッド（自分以外が処理を実行できないように、URL直打ちで遷移できないようにする）
+  #退会している会員の情報は閲覧不可にする（特定会員の投稿一覧ページ、投稿詳細ページに反映させる：URL直打ち対策）
+  def cancel_membership
+    @cooking_post = CookingPost.find(params[:id]) #URLの投稿情報を取得
+    @customer = @cooking_post.customer
+    if @customer.is_active == false #会員ステータスがfalse(退会ユーザー)だったら
+      flash[:notice] = "ご指定の会員の投稿は閲覧できません"
+      redirect_to cooking_posts_path
+    end
+  end
+
+  #ログインユーザーがその投稿の投稿者か判断する（自分以外が処理を実行できないように、URL直打ちで遷移できないようにする）
   def is_matching_login_user
     @cooking_post = CookingPost.find(params[:id])
     @customer = @cooking_post.customer
