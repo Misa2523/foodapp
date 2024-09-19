@@ -13,7 +13,7 @@
         <tbody>
           <tr>
             <td class="pl-5"><%= f.label :"ジャンル名" %></td>
-            <td class="pl-1"><%= f.text_field :name %></td>
+            <td class="pl-1"><%= f.text_field :name, required: true %></td>
             <td class="pl-3"><%= f.submit "新規登録", class: "btn btn-success", style: "font-weight: bold;" %></td>
           </tr>
         </tbody>

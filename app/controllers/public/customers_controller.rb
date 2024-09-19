@@ -1,10 +1,9 @@
 class Public::CustomersController < ApplicationController
 
-  #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（全てのアクションに対し）
-  before_action :authenticate_customer!
+  before_action :authenticate_customer!  #ログイン前ユーザーによるURL直打ちでの、ページ遷移と処理を制限（全てのアクションに対し）
 
-  #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限
-  before_action :restricted_guest_user, only: [:index, :posts_index, :show, :edit, :check, :update, :out]
+  before_action :restricted_guest_user #application_controller.rbで定義したメソッドを実行（ゲストユーザーによるURL直打ちでの、ページ遷移と処理を制限）全てのアクションに対し
+  before_action :cancel_membership, only: [:posts_index] #private内で定義したメソッドを実行（退会している会員の投稿一覧ページは閲覧不可にする）
 
   def index
     @customers = Customer.all.page(params[:page]).per(10)
@@ -12,9 +11,7 @@ class Public::CustomersController < ApplicationController
 
   def posts_index
     @customer = Customer.find(params[:id])
-    @cooking_posts = @customer.cooking_posts  #会員に紐づく料理投稿を取得（idで指定された会員の投稿のみ表示するため定義）
-
-    @customers = Customer.all.page(params[:page]).per(10) #ページネーション用に定義
+    @cooking_posts = @customer.cooking_posts.page(params[:page]).per(10)  #会員に紐づく料理投稿を取得（idで指定された会員の投稿のみ表示するため定義）
   end
 
   def show
@@ -51,6 +48,15 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :name_kana, :telephone_number, :email, :is_active)
+  end
+
+  #退会している会員の情報は閲覧不可にする（特定会員の投稿一覧ページ、投稿詳細ページに反映させる：URL直打ち対策）
+  def cancel_membership
+    @customer = Customer.find(params[:id]) #URLの会員情報を取得
+    if @customer.is_active == false #会員ステータスがfalse(退会ユーザー)だったら
+      flash[:notice] = "ご指定の会員の投稿は閲覧できません"
+      redirect_to cooking_posts_path
+    end
   end
 
 end
