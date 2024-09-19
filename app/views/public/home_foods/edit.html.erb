@@ -11,12 +11,12 @@
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"食材名" %></div>
-      <div class="col-3 p-0"><%= f.text_field :name, autofocus: true %></div>
+      <div class="col-3 p-0"><%= f.text_field :name, required: true, autofocus: true %></div>
     </div>
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"量" %></div>
-      <div class="col-3 p-0"><%= f.text_field :amount %></div>
+      <div class="col-3 p-0"><%= f.text_field :amount, required: true %></div>
     </div>
 
     <div class="row">
