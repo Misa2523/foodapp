@@ -23,7 +23,8 @@ class Public::CookingPostsController < ApplicationController
   end
 
   def index
-    @cooking_posts = CookingPost.all.page(params[:page]).per(10)
+    #会員ステータスが有効である会員の投稿を取得（アソシエーションの関係はincludesで読み込み）
+    @cooking_posts = CookingPost.includes(:customer).where(customers: { is_active: true }).page(params[:page]).per(10)
   end
 
   def search

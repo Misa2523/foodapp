@@ -12,9 +12,24 @@ class Public::CustomersController < ApplicationController
 
   def posts_index
     @customer = Customer.find(params[:id])
+
+
+
     @cooking_posts = @customer.cooking_posts  #会員に紐づく料理投稿を取得（idで指定された会員の投稿のみ表示するため定義）
 
     @customers = Customer.all.page(params[:page]).per(10) #ページネーション用に定義
+
+
+    #特定会員の投稿を取得
+    # if current_customer.id == @customer.id #ログインユーザーと料理の投稿者が一致していたら
+    #   @cooking_posts = CookingPost.where(customers: {id: current_customer.id}) #ログインユーザーの投稿を所得
+    # else
+    #   @cooking_posts = CookingPost.where(customers: {id: @customer.id})
+    # end
+
+    #会員ステータスが有効である会員の投稿を取得（アソシエーションの関係はincludesで読み込み）
+    # @cooking_posts = CookingPost.includes(:customer).where(customers: { is_active: true }).page(params[:page]).per(10)
+
   end
 
   def show

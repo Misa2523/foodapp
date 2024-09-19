@@ -33,3 +33,7 @@ feature/keyword-search：キーワード検索機能の実装
 feature/genre-search：ジャンル検索機能の実装
 feature/sort：ソート機能の実装
 feature/layout-2：レイアウト調整
+
+
+.where.not(is_active: false)
+@trips = Trip.where.not(user_id: not_active_users).page(params[:page]).per(5)
