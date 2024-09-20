@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :cooking_posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       collection do #オリジナルのアクションに対する設定
-        post 'search'
+        get 'search'
       end
     end
     resources :food_strage_areas, only: [:index]
