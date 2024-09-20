@@ -1,9 +1,12 @@
-<!--みんなの投稿一覧ページ 12,13P-->
+<!--みんなの投稿一覧ページ 12P-->
 <div class="container">
 
   <div class="row pt-5">
     <div class="col-md-5 text-center">
       <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>みんなの投稿一覧</strong></h4>
+    </div>
+    <div class="col-md-5 text-right">
+      <%= render 'search', content: @content %> <!--部分テンプレート：キーワード検索フォーム-->
     </div>
   </div>
 
