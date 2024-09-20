@@ -34,9 +34,9 @@ class Public::CookingPostsController < ApplicationController
     @content = params["content"] #_search.html.erbにて入力したキーワードを@contentに代入
     @model = "cooking_posts" #条件を料理投稿モデルに固定
     @method = "partial" #条件を部分一致に固定
-    
+
     # 検索結果を@recordsに代入（search_forメソッドはprivate内に記述)
-    @records = search_for(@model, @content, @method)
+    @records = search_for(@content, @model, @method)
   end
 
   def show
@@ -98,9 +98,8 @@ class Public::CookingPostsController < ApplicationController
   end
 
   # キーワード検索用のメソッド
-  def search_for(model, content, method)
+  def search_for(content, model, method)
     CookingPost.where("introduction LIKE ?", "%"+content+"%") #部分一致
-
   end
 
 end

@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     get '/customers/:id/cooking_posts' => 'customers#posts_index', as: "posts_index_customers"
     get '/customers/check' => 'customers#check'
     patch '/customers/out' => 'customers#out'
+    get 'customers/search' => 'customers#search'
   end
 
   #管理者側の設定

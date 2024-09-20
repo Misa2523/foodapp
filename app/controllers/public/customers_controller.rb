@@ -9,6 +9,15 @@ class Public::CustomersController < ApplicationController
     @customers = Customer.all.page(params[:page]).per(10)
   end
 
+  def search
+    @content = params["content"] #_search.html.erbにて入力したキーワードを@contentに代入
+    @model = "customers" #条件を料理投稿モデルに固定
+    @method = "partial" #条件を部分一致に固定
+
+    # 検索結果を@recordsに代入（search_forメソッドはprivate内に記述)
+    @records = search_for(@content, @model, @method)
+  end
+
   def posts_index
     @customer = Customer.find(params[:id])
     @cooking_posts = @customer.cooking_posts.page(params[:page]).per(10)  #会員に紐づく料理投稿を取得（idで指定された会員の投稿のみ表示するため定義）
@@ -57,6 +66,11 @@ class Public::CustomersController < ApplicationController
       flash[:notice] = "ご指定の会員の投稿は閲覧できません"
       redirect_to cooking_posts_path
     end
+  end
+
+  # キーワード検索用のメソッド
+  def search_for(content, model, method)
+    Customer.where("name LIKE ?", "%"+content+"%") #部分一致
   end
 
 end
