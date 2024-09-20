@@ -23,41 +23,9 @@
       <%= render 'genre', genres: @genres %>
     </div>
 
-    <!--家庭内食材一覧の表-->
+    <!--家庭内食材一覧の表（部分テンプレート）-->
     <div class="col-md-9 mx-auto">
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr class="text-center">
-              <th>食材名</th>
-              <th>量</th>
-              <th>消費期限</th>
-              <th>賞味期限</th>
-              <th>登録日</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @home_foods.each do |home_food| %>
-                <tr class="text-center">
-                  <td><%= home_food.name %></td>
-                  <td><%= home_food.amount %></td>
-                  <td><%= home_food.expiration_date.present? ? home_food.expiration_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
-                  <td><%= home_food.best_before_date.present? ? home_food.best_before_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
-                  <td><%= home_food.created_at.strftime("%Y/%m/%d") %></td> <!--年月日のみ表示-->
-                  <td>
-                    <div style="display: inline-block;">
-                      <%= link_to "編集", edit_home_food_path(home_food), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
-                    </div>
-                    <div class="ml-3" style="display: inline-block;">
-                      <%= button_to "削除", home_food_path(home_food), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
-                    </div>
-                  </td>
-                </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render 'index', home_foods: @home_foods %>
     </div>
 
   </div>
