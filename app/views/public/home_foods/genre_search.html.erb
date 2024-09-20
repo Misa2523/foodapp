@@ -1,9 +1,12 @@
-<!--家庭内食材一覧ページ 6P-->
+<!--家庭内食材のジャンル検索結果ページ 7P-->
 <div class="container">
 
   <div class="row pt-5">
     <div class="col-md-5 text-center">
       <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>家庭内食材一覧</strong></h4>
+    </div>
+    <div class="col-md-5 text-right">
+      <p class="d-inline px-3" style="border-bottom: 1px solid;">" <%= @genre.name %> "の検索結果</p>
     </div>
   </div>
 
@@ -15,7 +18,7 @@
 
   <div class="row my-4">
 
-    <!--ジャンル検索フォーム（部分テンプレート）-->
+    <!--ジャンル検索フォーム-->
     <div class="col-md-2">
       <%= render 'genre', genres: @genres %>
     </div>

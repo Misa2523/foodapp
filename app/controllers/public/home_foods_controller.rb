@@ -25,6 +25,20 @@ class Public::HomeFoodsController < ApplicationController
   def index
     #ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
     @home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).all.page(params[:page]).per(10)
+
+    #ジャンル検索で使う変数
+    @genres = Genre.all
+  end
+
+  def genre_search
+    @genres = Genre.all #ジャンル検索で使う変数
+
+    @genre_id = params[:genre_id] #ジャンル検索部分から送られてきたgenre_idを@genre_idに代入
+    @genre = Genre.find(@genre_id) #選択されたジャンル情報を取得
+
+    #選択されたジャンルを指定している情報、かつ、ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
+    @home_foods = HomeFood.includes(:customer).where(genre_id: @genre_id, customer_id: current_customer.id)
+                          .page(params[:page]).per(10)
   end
 
   def edit
