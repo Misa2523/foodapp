@@ -1,4 +1,4 @@
-<!--会員一覧ページ 11P-->
+<!--会員の検索結果ページ 11.5P-->
 <div class="container">
 
   <div class="row pt-5">
@@ -6,7 +6,7 @@
       <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>会員一覧</strong></h4>
     </div>
     <div class="col-md-5 text-right">
-      <%= render 'search', content: @content %> <!--部分テンプレート：キーワード検索フォーム-->
+      <p class="d-inline px-3" style="border-bottom: 1px solid;">" <%= @content %> "の検索結果</p>
     </div>
   </div>
 
@@ -20,14 +20,14 @@
             </tr>
           </thead>
           <tbody>
-            <% @customers.each do |customer| %>
+            <% @records.each do |record| %>
 
-              <% unless customer.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
-                <% unless customer.is_active == false %> <!--退会している会員でなければ表示-->
+              <% unless record.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
+                <% unless record.is_active == false %> <!--退会している会員でなければ表示-->
                   <tr class="text-center">
                     <td>
-                      <%= link_to posts_index_customers_path(customer), style: "color: black; text-decoration: underline;" do %>
-                        <%= customer.name %>
+                      <%= link_to posts_index_customers_path(record), style: "color: black; text-decoration: underline;" do %>
+                        <%= record.name %>
                       <% end %>
                     </td>
                   </tr>
@@ -37,14 +37,6 @@
             <% end %>
           </tbody>
         </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div style="display: flex; justify-content: center;">
-        <%= paginate @customers, class: "pagination" %>
       </div>
     </div>
   </div>

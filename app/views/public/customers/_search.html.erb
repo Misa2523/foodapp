@@ -1,0 +1,11 @@
+<!--部分テンプレート：会員においてのキーワード検索フォーム-->
+<div>
+  <% if customer_signed_in? %>
+
+    <%= form_with url: customers_search_path, method: :get do |f| %>
+      <%= f.text_field :content, placeholder: "キーワードを入力" %>
+      <%= f.submit "検索" %>
+    <% end %>
+
+  <% end %>
+</div>

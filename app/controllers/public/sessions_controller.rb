@@ -3,11 +3,11 @@ class Public::SessionsController < Devise::SessionsController
   before_action :reject_customer, only: [:create] #createアクション実行前にこのメソッドを実行
 
   def after_sign_in_path_for(resource)
-    root_path #サインイン後トップページへ遷移
+    customers_my_page_path #サインイン後マイページへ遷移
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    root_path #サインアウト後トップページへ遷移
+    about_path #サインアウト後Aboutページへ遷移
   end
 
   def guest_sign_in

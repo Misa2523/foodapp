@@ -1,20 +1,24 @@
-ジャンル編集ページ 32P
-
+<!--ジャンル編集ページ 32P-->
 <div class="container">
+
   <div class="row pt-5">
-    <h4><strong>ジャンル編集</strong></h4>
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>ジャンル編集</strong></h4>
+    </div>
   </div>
-  <div class="row pt-3 justify-content-center">
+
+  <div class="row py-3 mx-5">
     <%= form_with model: @genre, url: admin_genre_path(@genre) do |f| %>
       <table>
         <tbody>
           <tr>
-            <td><label>ジャンル名</label></td>
-            <td><%= f.text_field :name, autofocus: true %></td>
-            <td><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></td>
+            <td class="pl-5"><%= f.label :"ジャンル名" %></td>
+            <td class="pl-1"><%= f.text_field :name, required: true, autofocus: true %></td>
+            <td class="pl-3"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></td>
           </tr>
         </tbody>
       </table>
     <% end %>
   </div>
+
 </div>

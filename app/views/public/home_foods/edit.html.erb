@@ -11,12 +11,12 @@
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"食材名" %></div>
-      <div class="col-3 p-0"><%= f.text_field :name, autofocus: true %></div>
+      <div class="col-3 p-0"><%= f.text_field :name, required: true, autofocus: true %></div>
     </div>
 
     <div class="row pb-2">
       <div class="col-3 text-right offset-1"><%= f.label :"量" %></div>
-      <div class="col-3 p-0"><%= f.text_field :amount %></div>
+      <div class="col-3 p-0"><%= f.text_field :amount, required: true %></div>
     </div>
 
     <div class="row">
@@ -34,7 +34,7 @@
       <div class="col-3 p-0"><%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %></div> <!--セレクトボックス-->
     </div>
 
-    <div class="row pb-2">
+    <div class="row pt-2 pb-2">
       <div class="col-3 offset-4 text-center"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></div>
     </div>
 

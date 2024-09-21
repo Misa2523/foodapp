@@ -20,11 +20,15 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :cooking_posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       collection do #オリジナルのアクションに対する設定
-        post 'search'
+        get 'search' #キーワード検索のアクション
       end
     end
     resources :food_strage_areas, only: [:index]
-    resources :home_foods, only: [:new, :create, :index, :edit, :update, :destroy]
+    resources :home_foods, only: [:new, :create, :index, :edit, :update, :destroy] do
+      collection do
+        get 'genre_search' #ジャンル検索のアクション
+      end
+    end
 
     get '/notifications/:id/mark_as_read' => 'notifications#mark_as_read', as: "mark_as_read_notifications" #URIパターンを設計書通りに修正
     resources :notifications, only: [:index, :destroy]
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
     get '/customers/:id/cooking_posts' => 'customers#posts_index', as: "posts_index_customers"
     get '/customers/check' => 'customers#check'
     patch '/customers/out' => 'customers#out'
+    get '/customers/search' => 'customers#search' #キーワード検索のアクション
   end
 
   #管理者側の設定

@@ -1,49 +1,53 @@
-会員情報編集ページ 24P
-
+<!--会員情報編集ページ 24P-->
 <div class="container">
+
   <div class="row pt-5">
-    <h4><strong><%= @customer.name %>さんの会員情報編集</strong></h4>
+    <div class="col-md-5 text-center">
+      <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong><%= @customer.name %>さんの会員情報編集</strong></h4>
+    </div>
   </div>
-  <div class="row pt-3 justify-content-center">
-    <%= form_with model: @customer, url: admin_customer_path do |f| %>
-      <table>
-        <tbody>
-          <tr>
-            <td><label>会員ID</label></td>
-            <td><%= @customer.id %></td>
-          </tr>
-          <tr>
-            <td><label>氏名</label></td>
-            <td><%= f.text_field :name, autofocus: true %></td>
-          </tr>
-          <tr>
-            <td><label>フリガナ</label></td>
-            <td><%= f.text_field :name_kana %></td>
-          </tr>
-          <tr>
-            <td><label>メールアドレス</label></td>
-            <td><%= f.email_field :email %></td>
-          </tr>
-          <tr>
-            <td><label>電話番号</label></td>
-            <td><%= f.text_field :telephone_number %></td>
-          </tr>
-          <tr>
-            <td><label>会員ステータス</label></td>
-            <td colspan="2">
-              <%= f.radio_button :is_active, true, checked: @customer.is_active == true %> <!--ラジオボタン-->
-              <%= f.label :is_active, '有効' %> <!--ラベル-->
-              <%= f.radio_button :is_active, false, checked: @customer.is_active == false %> <!--ラジオボタン-->
-              <%= f.label :is_active, '退会' %> <!--ラベル-->
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+
+  <%= form_with model: @customer, url: admin_customer_path do |f| %>
+
+    <div class="row pt-3 pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"会員ID" %></div>
+      <div class="col-5 p-0"><%= @customer.id %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"氏名" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name, required: true, autofocus: true %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"フリガナ" %></div>
+      <div class="col-5 p-0"><%= f.text_field :name_kana, required: true %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"メールアドレス" %></div>
+      <div class="col-5 p-0"><%= f.email_field :email, required: true %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"電話番号" %></div>
+      <div class="col-5 p-0"><%= f.text_field :telephone_number, required: true %></div>
+    </div>
+
+    <div class="row pb-2">
+      <div class="col-4 text-right offset-1"><%= f.label :"会員ステータス" %></div>
+      <div class="col-5 p-0">
+        <%= f.radio_button :is_active, true, checked: @customer.is_active == true %> <!--ラジオボタン-->
+        <%= f.label :is_active, '有効' %> <!--ラベル-->
+        <%= f.radio_button :is_active, false, checked: @customer.is_active == false %> <!--ラジオボタン-->
+        <%= f.label :is_active, '退会' %> <!--ラベル-->
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-2">
+      <div class="col-6 text-right"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></div>
+    </div>
+
+  <% end %>
+
 </div>

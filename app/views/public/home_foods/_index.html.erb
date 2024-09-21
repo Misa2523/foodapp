@@ -1,0 +1,49 @@
+<!--部分テンプレート：家庭内食材一覧の表-->
+<div class="table-responsive">
+
+  <!--ソート機能-->
+  <div class="mb-1 text-left">
+    <% if @genre_id.present? %> <!--@genre_idが存在する場合（ジャンル検索機能とソート機能を同時に適用するため追記）-->
+      <%= link_to "消費期限が早い順", genre_search_home_foods_path(genre_id: @genre_id, expiration_soon: "true") %> |
+      <%= link_to "賞味期限が早い順", genre_search_home_foods_path(genre_id: @genre_id, best_before_soon: "true") %> |
+      <%= link_to "登録日が古い順", genre_search_home_foods_path(genre_id: @genre_id, created_old: "true") %>
+    <% else %> <!--ジャンル検索機能とソート機能を同時に適用する前の、ソート機能のみ実装した段階ではif文は書かず下記コードだけだった-->
+      <%= link_to "消費期限が早い順", home_foods_path(expiration_soon: "true") %> |
+      <%= link_to "賞味期限が早い順", home_foods_path(best_before_soon: "true") %> |
+      <%= link_to "登録日が古い順", home_foods_path(created_old: "true") %>
+    <% end %>
+  </div>
+
+  <!--家庭内食材一覧の表-->
+  <table class="table">
+    <thead class="font-weight-bold" style="background-color: #dfdfdf;">
+      <tr class="text-center">
+        <th>食材名</th>
+        <th>量</th>
+        <th>消費期限</th>
+        <th>賞味期限</th>
+        <th>登録日</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% home_foods.each do |home_food| %>
+          <tr class="text-center">
+            <td><%= home_food.name %></td>
+            <td><%= home_food.amount %></td>
+            <td><%= home_food.expiration_date.present? ? home_food.expiration_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
+            <td><%= home_food.best_before_date.present? ? home_food.best_before_date.strftime("%Y/%m/%d") : "ー" %></td><!--データがなかったら"ー"を表示-->
+            <td><%= home_food.created_at.strftime("%Y/%m/%d") %></td> <!--年月日のみ表示-->
+            <td>
+              <div style="display: inline-block;">
+                <%= link_to "編集", edit_home_food_path(home_food), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
+              </div>
+              <div class="ml-3" style="display: inline-block;">
+                <%= button_to "削除", home_food_path(home_food), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
+              </div>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

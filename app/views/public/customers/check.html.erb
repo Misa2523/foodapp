@@ -15,9 +15,13 @@
       </h5>
     </div>
 
-    <div class="row mt-5">
-      <div class= "mr-5" style="display: inline-block;"><%= link_to "退会しない", customers_my_page_path, class:"btn btn-primary" %></div>
-      <div class= "ml-5" style="display: inline-block;"><%= link_to "退会する", customers_out_path, method: :patch, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %></div>
+    <div class="row pt-2 mt-5">
+      <div class= "mr-5" style="display: inline-block;">
+        <%= link_to "退会しない", customers_my_page_path, class:"btn btn-primary" %>
+      </div>
+      <div class= "ml-5" style="display: inline-block;">
+        <%= link_to "退会する", customers_out_path, method: :patch, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %>
+      </div>
     </div>
 
   </div>
