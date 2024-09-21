@@ -6,7 +6,7 @@ class HomeFood < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   #バリデーション設定
-  validates :name, uniqueness: { scope: :customer_id, message: "は既に登録されています" },  #同じ食材を別々で登録しないため一意性を設定(登録者が同一でない場合は登録できるようscopeを設定)
+  validates :name, uniqueness: { scope: :customer_id },  #同じ食材を別々で登録しないため一意性を設定(登録者が同一でない場合は登録できるようscopeを設定)
                   presence: true
   validates :amount, presence: true
 
