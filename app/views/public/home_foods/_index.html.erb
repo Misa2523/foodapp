@@ -1,5 +1,14 @@
 <!--部分テンプレート：家庭内食材一覧の表-->
 <div class="table-responsive">
+
+  <!--ソート機能-->
+  <div class="mb-1 text-left">
+    <%= link_to "消費期限が早い順", home_foods_path(expiration_soon: "true") %>
+    | <%= link_to "賞味期限が早い順", home_foods_path(best_before_soon: "true") %>
+    | <%= link_to "登録日が古い順", home_foods_path(created_old: "true") %>
+  </div>
+
+  <!--家庭内食材一覧の表-->
   <table class="table">
     <thead class="font-weight-bold" style="background-color: #dfdfdf;">
       <tr class="text-center">

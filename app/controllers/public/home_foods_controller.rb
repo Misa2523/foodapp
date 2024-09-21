@@ -24,10 +24,24 @@ class Public::HomeFoodsController < ApplicationController
 
   def index
     #ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
-    @home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).all.page(params[:page]).per(10)
+    #@home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).all.page(params[:page]).per(10)
 
     #ジャンル検索で使う変数
     @genres = Genre.all
+
+
+    #コードの説明、ログインユーザーが登録した情報のみ取得のコード書く、ー部分は後ろに表示させるよう修正、ジャンル検索時はどうするか考える
+
+    #ソート機能で使う変数
+    if params[:expiration_soon]
+      @home_foods = HomeFood.expiration_soon.page(params[:page]).per(10)
+    elsif params[:best_before_soon]
+      @home_foods = HomeFood.best_before_soon.page(params[:page]).per(10)
+    elsif params[:created_old]
+      @home_foods = HomeFood.created_old.page(params[:page]).per(10)
+    else
+      @home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).page(params[:page]).per(10)
+    end
   end
 
   def genre_search
