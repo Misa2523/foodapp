@@ -6,15 +6,25 @@ class HomeFood < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   #バリデーション設定
-  validates :name, uniqueness: true, presence: true #同じ食材を別々で登録しないため一意性を設定
+  validates :name, uniqueness: { scope: :customer_id, message: "は既に登録されています" },  #同じ食材を別々で登録しないため一意性を設定(登録者が同一でない場合は登録できるようscopeを設定)
+                  presence: true
   validates :amount, presence: true
 
   before_validation :strip_whitespace #private内のメソッド呼び出し
 
-  #ソート機能   「scopeメソッド」scope :スコープの名前, -> { 条件式 }     /order：データの取り出し 
-  scope :expiration_soon, -> {order(expiration_date: :asc)} #消費期限が早い順に並べる
-  scope :best_before_soon, -> {order(best_before_date: :asc)} #賞味期限が早い順に並べる
-  scope :created_old, -> {order(created_at: :asc)} #登録日が古い順に並べる
+  #ソート機能   「scopeメソッド」scope :スコープの名前, -> { 条件式 }     /order：データの取り出し
+  scope :expiration_soon, -> { #消費期限が早い順に並べる
+    order(Arel.sql("CASE WHEN expiration_date IS NULL THEN 1 ELSE 0 END, expiration_date ASC")) # Arel.sqlを使いCASE文を組むことで、日付設定されないデータ(NULL値)を後ろに表示
+  }
+  scope :best_before_soon, -> { #賞味期限が早い順に並べる
+    order(Arel.sql("CASE WHEN best_before_date IS NULL THEN 1 ELSE 0 END, best_before_date ASC"))
+  }
+  scope :created_old, -> { #登録日が古い順に並べる
+    order(created_at: :asc)
+  }
+
+    #--ソート機能のコード解説--#
+  # Arel.sql("CASE WHEN [カラム名] IS NULL THEN 1 ELSE 0 END")の部分 ====> [カラム名]がNULLの場合1を返し、それ以外の場合は0を返す
 
   private
 

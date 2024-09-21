@@ -23,25 +23,32 @@ class Public::HomeFoodsController < ApplicationController
   end
 
   def index
-    #ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
-    #@home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).all.page(params[:page]).per(10)
-
     #ジャンル検索で使う変数
     @genres = Genre.all
 
 
-    #コードの説明、ログインユーザーが登録した情報のみ取得のコード書く、ー部分は後ろに表示させるよう修正、ジャンル検索時はどうするか考える
+    #く、ー部分は後ろに表示させるよう修正、ジャンル検索時はどうするか考える
 
     #ソート機能で使う変数
-    if params[:expiration_soon]
-      @home_foods = HomeFood.expiration_soon.page(params[:page]).per(10)
-    elsif params[:best_before_soon]
-      @home_foods = HomeFood.best_before_soon.page(params[:page]).per(10)
-    elsif params[:created_old]
-      @home_foods = HomeFood.created_old.page(params[:page]).per(10)
-    else
+    if params[:expiration_soon] #消費期限が早い順に並び替えたとき
+      @home_foods = HomeFood.expiration_soon.includes(:customer).where(customer_id: current_customer.id).page(params[:page]).per(10)
+
+    elsif params[:best_before_soon] #賞味期限が早い順に並び替えたとき
+      @home_foods = HomeFood.best_before_soon.includes(:customer).where(customer_id: current_customer.id).page(params[:page]).per(10)
+
+    elsif params[:created_old] #登録日が古い順に並び替えたとき
+      @home_foods = HomeFood.created_old.includes(:customer).where(customer_id: current_customer.id).page(params[:page]).per(10)
+
+    else #通常の状態
       @home_foods = HomeFood.includes(:customer).where(customer_id: current_customer.id).page(params[:page]).per(10)
     end
+
+      #--ソート機能のコード解説--#
+    # HomeFood.[スコープ名]の部分 ====> 例えば[]スコープ名]が上記のexpiration_soonの場合は、expiration_soonスコープが適用されたHomeFoodモデルのデータを取得
+    # includes(:customer).where(customer_id: current_customer.id)の部分 ====> ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
+
+    # .page(params[:page]).per(10)の部分 ====> ページネーション
+
   end
 
   def genre_search
