@@ -9,7 +9,13 @@
     <%= form_with url: genre_search_home_foods_path, method: :get do |f| %>
       <% genres.each do |genre| %>
         <tr>
-          <td><%= link_to genre.name, genre_search_home_foods_path(genre_id: genre.id), style: "color: black; text-decoration: underline;", method: :get %></td>
+          <td>
+            <!--ジャンル検索フォームからのリンクにソートパラメータを渡せるよう設定（ジャンル検索機能とソート機能を同時に適用するため、ジャンル検索機能のみ実装していたコードに下記コードを追記した）-->
+            <!--expiration_soon: params[:expiration_soon], best_before_soon: params[:best_before_soon], created_old: params[:created_old]-->
+            <%= link_to genre.name,
+                        genre_search_home_foods_path(genre_id: genre.id, expiration_soon: params[:expiration_soon], best_before_soon: params[:best_before_soon], created_old: params[:created_old]),
+                        style: "color: black; text-decoration: underline;", method: :get %>
+          </td>
         </tr>
       <% end %>
     <% end %>

@@ -30,9 +30,6 @@ class Public::HomeFoodsController < ApplicationController
     #ジャンル検索で使う変数
     @genres = Genre.all
 
-
-    #く、ー部分は後ろに表示させるよう修正、ジャンル検索時はどうするか考える
-
     #ソート機能で使う変数
     if params[:expiration_soon] #消費期限が早い順に並び替えたとき
       @home_foods = HomeFood.expiration_soon.includes(:customer).where(customer_id: current_customer.id).page(params[:page]).per(10)
@@ -50,9 +47,7 @@ class Public::HomeFoodsController < ApplicationController
       #--ソート機能のコード解説--#
     # HomeFood.[スコープ名]の部分 ====> 例えば[]スコープ名]が上記のexpiration_soonの場合は、expiration_soonスコープが適用されたHomeFoodモデルのデータを取得
     # includes(:customer).where(customer_id: current_customer.id)の部分 ====> ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
-
     # .page(params[:page]).per(10)の部分 ====> ページネーション
-
   end
 
   def genre_search
@@ -62,8 +57,18 @@ class Public::HomeFoodsController < ApplicationController
     @genre = Genre.find(@genre_id) #選択されたジャンル情報を取得
 
     #選択されたジャンルを指定している情報、かつ、ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
-    @home_foods = HomeFood.includes(:customer).where(genre_id: @genre_id, customer_id: current_customer.id)
-                          .page(params[:page]).per(10)
+    home_foods = HomeFood.includes(:customer).where(genre_id: @genre_id, customer_id: current_customer.id)
+
+    #ソート条件をif文で適用（ジャンル検索機能とソート機能を同時に適用するため追記）
+    if params[:expiration_soon]
+      home_foods = home_foods.expiration_soon
+    elsif params[:best_before_soon]
+      home_foods = home_foods.best_before_soon
+    elsif params[:created_old]
+      home_foods = home_foods.created_old
+    end
+
+    @home_foods = home_foods.page(params[:page]).per(10) #home_foodsにページネーションを追加
   end
 
   def edit

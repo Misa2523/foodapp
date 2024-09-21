@@ -3,9 +3,15 @@
 
   <!--ソート機能-->
   <div class="mb-1 text-left">
-    <%= link_to "消費期限が早い順", home_foods_path(expiration_soon: "true") %>
-    | <%= link_to "賞味期限が早い順", home_foods_path(best_before_soon: "true") %>
-    | <%= link_to "登録日が古い順", home_foods_path(created_old: "true") %>
+    <% if @genre_id.present? %> <!--@genre_idが存在する場合（ジャンル検索機能とソート機能を同時に適用するため追記）-->
+      <%= link_to "消費期限が早い順", genre_search_home_foods_path(genre_id: @genre_id, expiration_soon: "true") %> |
+      <%= link_to "賞味期限が早い順", genre_search_home_foods_path(genre_id: @genre_id, best_before_soon: "true") %> |
+      <%= link_to "登録日が古い順", genre_search_home_foods_path(genre_id: @genre_id, created_old: "true") %>
+    <% else %> <!--ジャンル検索機能とソート機能を同時に適用する前の、ソート機能のみ実装した段階ではif文は書かず下記コードだけだった-->
+      <%= link_to "消費期限が早い順", home_foods_path(expiration_soon: "true") %> |
+      <%= link_to "賞味期限が早い順", home_foods_path(best_before_soon: "true") %> |
+      <%= link_to "登録日が古い順", home_foods_path(created_old: "true") %>
+    <% end %>
   </div>
 
   <!--家庭内食材一覧の表-->
