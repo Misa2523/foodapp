@@ -11,13 +11,17 @@ class Public::HomeFoodsController < ApplicationController
 
   def create
     @home_food = HomeFood.new(home_food_params)
-    @home_food.customer_id = current_customer.id #ログイン中の顧客のIDを設定(1:NのN側でこの設定が必要)
+    @home_food.customer_id = current_customer.id #ログイン中ユーザーのIDを設定(1:NのN側でこの設定が必要)
 
     if @home_food.save
       flash[:notice] = "新しい食材を登録しました"
       redirect_to home_foods_path
     else
-      flash[:notice] = "食材の登録ができませんでした"
+      if HomeFood.exists?(name: @home_food.name, customer_id: current_customer.id) #入力された食材名がログイン中ユーザーによって既に登録済みだった場合
+        flash[:notice] = "その食材は既に登録されています"
+      else #食材名が登録済みではないが、正常に登録できなかった場合
+        flash[:notice] = "食材の登録ができませんでした"
+      end
       render :new
     end
   end
@@ -68,12 +72,17 @@ class Public::HomeFoodsController < ApplicationController
 
   def update
     @home_food = HomeFood.find(params[:id])
+
     if @home_food.update(home_food_params)
       flash[:notice] = "食材情報が更新されました"
       redirect_to home_foods_path
     else
       @home_food = HomeFood.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
-      flash[:notice] = "入力項目を正しく入力してください"
+      if HomeFood.exists?(name: @home_food.name, customer_id: current_customer.id) #入力された食材名がログイン中ユーザーによって既に登録済みだった場合
+        flash[:notice] = "その食材は既に登録されています"
+      else #食材名が登録済みではないが、正常に登録できなかった場合
+        flash[:notice] = "入力項目を正しく入力してください"
+      end
       render :edit
     end
   end
