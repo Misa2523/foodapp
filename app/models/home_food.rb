@@ -22,7 +22,6 @@ class HomeFood < ApplicationRecord
   scope :created_old, -> { #登録日が古い順に並べる
     order(created_at: :asc)
   }
-
     #--ソート機能のコード解説--#
   # Arel.sql("CASE WHEN [カラム名] IS NULL THEN 1 ELSE 0 END")の部分 ====> [カラム名]がNULLの場合1を返し、それ以外の場合は0を返す
 
