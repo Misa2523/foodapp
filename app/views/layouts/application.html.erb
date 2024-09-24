@@ -183,7 +183,7 @@
 
     <main style="margin-top: 150px;">
       <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div> <!--フラッシュメッセージ表示-->
+        <div class="flash-message <%= message_type %>" style="padding-top: 50px;"><%= message %></div> <!--フラッシュメッセージ表示-->
       <% end %>
 
       <%= yield %>
