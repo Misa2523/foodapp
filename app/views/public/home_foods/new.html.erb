@@ -23,10 +23,14 @@
       <p class="col-12 text-center" style="font-size: smaller; color: gray;">※期限は食材に記載のある方を入力してください。（どちらもない場合は未入力でOKです。）</p><!--注釈-->
     </div>
     <div class="row pb-2">
-      <div class="col-3 text-right offset-1"><%= f.label :"消費期限" %></div>
-      <div class="col-1 p-0"><%= f.date_field :expiration_date %></div> <!--カレンダー入力-->
-      <div class="col-1 text-right offset-1"><%= f.label :"賞味期限" %></div>
-      <div class="col-1 p-0"><%= f.date_field :best_before_date %></div> <!--カレンダー入力-->
+      <div class="col-md-6 col-12 d-flex align-items-center">
+        <div class="col-md-8 col-5 text-right offset-md-1"><%= f.label :"消費期限" %></div>
+        <div class="col-md-4 col-7 p-0"><%= f.date_field :expiration_date %></div> <!--カレンダー入力-->
+      </div>
+      <div class="col-md-6 col-12 d-flex align-items-center">
+        <div class="col-md-3 col-5 text-right"><%= f.label :"賞味期限" %></div>
+        <div class="col-md-9 col-7 p-0"><%= f.date_field :best_before_date %></div> <!--カレンダー入力-->
+      </div>
     </div>
 
     <div class="row pb-2">
