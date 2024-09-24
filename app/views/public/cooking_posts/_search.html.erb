@@ -3,6 +3,7 @@
   <% if customer_signed_in? %>
 
     <%= form_with url: search_cooking_posts_path, method: :get do |f| %>
+      <%= f.select :condition, options_for_select({"料理名"=>"name","紹介文"=>"introduction"}) %>
       <%= f.text_field :content, required: true, placeholder: "キーワードを入力" %>
       <%= f.submit "検索" %>
     <% end %>
