@@ -30,11 +30,10 @@
 
   </div>
 
+  <!--部分テンプレート：ページネーション-->
   <div class="row">
     <div class="col">
-      <div style="display: flex; justify-content: center;">
-        <%= paginate @home_foods, class: "pagination" %>
-      </div>
+      <%= render 'admin/food_strage_areas/pagenation', pages: @home_foods %>
     </div>
   </div>
 
