@@ -13,34 +13,10 @@
     </div>
   </div>
 
+  <!--部分テンプレート：会員一覧-->
   <div class="row my-4">
     <div class="col-md-6 mx-auto">
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr class="text-center">
-              <th>氏名</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @customers.each do |customer| %>
-
-              <% unless customer.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
-                <% unless customer.is_active == false %> <!--退会している会員でなければ表示-->
-                  <tr class="text-center">
-                    <td>
-                      <%= link_to posts_index_customers_path(customer), style: "color: black; text-decoration: underline;" do %>
-                        <%= customer.name %>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              <% end %>
-
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render 'index', customers: @customers %>
     </div>
   </div>
 
