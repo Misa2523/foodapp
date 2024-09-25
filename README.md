@@ -35,3 +35,7 @@
 >https://www.smartmat.io/column/inventory_contorol/8145
 >農林水産省「食品ロス量(令和2年度推計値)の公表について」
 >環境省「我が国の食品廃棄物等及び食品ロスの発生量の推計値(令和2年度)の公表について」
+
+>【画像素材をダウンロードしたサイト】
+>https://www.pakutaso.com/
+>PAKUTASO
