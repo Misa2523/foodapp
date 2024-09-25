@@ -100,9 +100,12 @@ class Public::CookingPostsController < ApplicationController
   # キーワード検索用のメソッド
   def search_for(content, condition, method)
     if condition == "name" #料理名カラムが選択された場合
-      CookingPost.where("name LIKE ?", "%"+content+"%") #部分一致
+      CookingPost.includes(:customer).where(customers: { is_active: true }) #会員ステータスが有効である会員の投稿を取得（アソシエーションの関係はincludesで読み込み）
+                  .where("cooking_posts.name LIKE ?", "%"+content+"%") #部分一致
+
     elsif condition == "introduction" #紹介文カラムが選択された場合
-      CookingPost.where("introduction LIKE ?", "%"+content+"%") #部分一致
+      CookingPost.includes(:customer).where(customers: { is_active: true })
+                  .where("introduction LIKE ?", "%"+content+"%") #部分一致
     end
   end
 
