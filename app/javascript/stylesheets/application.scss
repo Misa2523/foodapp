@@ -3,10 +3,11 @@
 /*------- ↓ ページネーションのcss-------*/
 //全体に適用
 .pagination {
-  display: flex;
-  justify-content: center;
-  list-style: none;
+  display: flex;  //子要素（ページ番号やリンク）を横並びに
+  justify-content: center;  //子要素を中央揃えに
+  list-style: none;  //番号や点の非表示
   padding: 0;
+  font-weight: bold;  //文字を太字にする
 }
 
 //各リストアイテムli要素に適用
@@ -16,159 +17,25 @@
 
 //リンク<a>とページ番号<span>に適用
 .pagination a, .pagination span {
-  // padding: 10px 15px;
-  // border: 1px solid #333;
-  // border-radius: 4px;
-  // color: #333;
-  // text-decoration: none;
-  // transition: all 0.3s;
-  display: inline-block;
+  display: inline-block;  //各ページ番号やリンクをインラインブロックにし、幅や高さを指定できるようにする
   width: 40px;
   height: 40px;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 50%;
-  border: 1px solid #e0e0e0;   //丸型のライン
-  color: #007bff;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  line-height: 40px;  //行の高さ
+  text-align: center;  //テキストの中央揃え
+  border-radius: 50%;  //要素を円形に（角を丸める）
+  color: #404040;  //テキストの色
+  text-decoration: none;  //リンクの下線を削除
+
+  //ホバー時
+  transition: all 0.3s ease;  //すべてを0.3秒かけて変化させる（～～を～～秒かけて変化）easeは速度変化
 }
 
-//リンク<a>のホバー時に適用
-.pagination a:hover {
-  background-color: #e0e0e0;  //背景色
+//ページ数のホバー時に適用
+.page:hover {
+  background-color: #ffe5cc;  //背景色
 }
-
-//現在表示中のページ番号<span>に適用
-.pagination .active span {
-  // background-color: #333;
-  // color: white;
-  // cursor: default;
-  
-/*background-color: #007bff;   現在のページは背景色
-  color: white;
-  border-color: #007bff;*/
+//現在のページのホバー時に適用
+.current:hover {
+  background-color: transparent;  //背景色を透明に
 }
 /*------- ↑ ページネーションのcss-------*/
-
-//"<(前へ)"や">(次へ)"の部分に適用
-.pagination .direction {
-/*display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;   矢印サイズ
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid  #e0e0e0;
-  color:  #e0e0e0;
-  transition: background-color 0.3s ease;*/
-}
-
-//"<"や">"の部分のホバー時に適用
-.pagination .direction:hover {
-  //background-color: #e0e0e0;  矢印のホバー時の背景色
-}
-/*ーーーーーーーーーーーーーーーーーーーー*/
-
-//"最初(first)"と"最後(last)"のリンク部分に適用
-.pagination .first a, .pagination .last a {
-/*font-size: 20px;   矢印の大きさ
-  padding: 10px;
-  border-radius: 50%;
-  border: 1px solid #e0e0e0;
-  color: #e0e0e0;
-  transition: background-color 0.3s ease;*/
-}
-
-//"最初"と"最後"のホバー時に適用
-.pagination .first a:hover, .pagination .last a:hover {
-  background-color: #e0e0e0;  //背景色
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*サイトの丸コピー*/
-/*.pagination {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  list-style: none;*/
-/*  padding: 0;*/
-/*}*/
-
-/*.pagination li {*/
-/*  margin: 0 8px;*/
-/*}*/
-
-/*.pagination a, .pagination span {*/
-/*  padding: 10px 15px;*/
-/*  border: 1px solid #333;*/
-/*  border-radius: 4px;*/
-/*  color: #333;*/
-/*  text-decoration: none;*/
-/*  transition: all 0.3s;*/
-/*}*/
-
-/*.pagination a:hover {*/
-/*  background-color: #333;*/
-/*  color: white;*/
-/*}*/
-
-/*.pagination .active span {*/
-/*  background-color: #333;*/
-/*  color: white;*/
-/*  cursor: default;*/
-/*}*/
-
-
-
-
-
-
-
-/*.pagination {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*}*/
-/*.pagination > * + * {*/
-/*  margin-left: 12px;*/
-/*}*/
-/*.pagination-Item-Link {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  flex-wrap: wrap;*/
-/*  width: 35px;*/
-/*  height: 35px;*/
-/*  background: #fff;*/
-/*  font-size: 20px;*/
-/*  font-weight: bold;*/
-/*  transition: all 0.15s linear;*/
-/*}*/
-/*.pagination-Item-Link-Icon {*/
-/*  width: 20px;*/
-/*}*/
-/*.pagination-Item-Link.isActive {*/
-/*  pointer-events: none;*/
-/*  background: #111;*/
-/*  color: #fff;*/
-/*}*/
-/*.pagination-Item-Link:not(.isActive):hover {*/
-/*  background: #111;*/
-/*  color: #fff;*/
-/*}*/
