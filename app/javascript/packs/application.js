@@ -14,9 +14,6 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
-// ページネーションのcssファイルを読み込み
-import "../stylesheets/pagination";
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
