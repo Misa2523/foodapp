@@ -30,10 +30,10 @@
 
   </div>
 
-  <!--部分テンプレート：ページネーション-->
+  <!--ページネーション-->
   <div class="row">
     <div class="col">
-      <%= render 'admin/food_strage_areas/pagination', pages: @home_foods %>
+      <%= paginate @home_foods, class: "pagination" %>
     </div>
   </div>
 

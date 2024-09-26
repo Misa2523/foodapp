@@ -13,10 +13,10 @@
     </div>
   </div>
 
-  <!--部分テンプレート：会員一覧-->
+  <!--会員一覧-->
   <div class="row my-4">
     <div class="col-md-6 mx-auto">
-      <%= render 'index', customers: @records %>
+      <%= paginate @records, class: "pagination" %>
     </div>
   </div>
 
