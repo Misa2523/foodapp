@@ -30,16 +30,16 @@ class Admin::CustomersController < ApplicationController
       telephone_exists = Customer.where.not(id: @customer.id).exists?(telephone_number: customer_params[:telephone_number])
 
       if email_exists && telephone_exists # メールアドレスと電話番号の両方が重複してたら
-        flash[:notice] = "このメールアドレスと電話番号は既に使用されています"
+        flash.now[:alert] = "このメールアドレスと電話番号は既に使用されています"
 
       elsif email_exists # メールアドレスのみ重複してたら
-        flash[:notice] = "このメールアドレスは既に使用されています"
+        flash.now[:alert] = "このメールアドレスは既に使用されています"
 
       elsif telephone_exists # 電話番号のみ重複してたら
-        flash[:notice] = "この電話番号は既に使用されています"
+        flash.now[:alert] = "この電話番号は既に使用されています"
 
       else
-        flash[:notice] = "入力項目を正しく入力してください"
+        flash.now[:alert] = "入力項目を正しく入力してください"
       end
       render :edit
     end
