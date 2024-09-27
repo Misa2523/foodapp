@@ -21,7 +21,19 @@
 - 期限が近くなった食材を確認する時
 
 ## 設計書
-後ほど作成予定
+[UI Flows](https://drive.google.com/file/d/1uiL7TqWViOR0nzY4sugj5QlWFZXiav7J/view?usp=drive_link)
+
+>UI Flows
+>
+
+>ER図
+>
+
+>テーブル定義書
+>
+
+>アプリケーション詳細設計書
+>
 
 ## 開発環境
 - OS：Linux(CentOS)
