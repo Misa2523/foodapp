@@ -28,7 +28,6 @@ class Public::SessionsController < Devise::SessionsController
         redirect_to new_customer_registration_path and return
       else
         flash.now[:alert] = "項目を入力してください"
-        render :new
       end
     end
   end
