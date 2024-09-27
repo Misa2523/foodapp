@@ -181,10 +181,12 @@
     </header>
 
     <main style="margin-top: 150px;">
+      <!--フラッシュメッセージ表示-->
       <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>" style="padding-top: 50px;"><%= message %></div> <!--フラッシュメッセージ表示-->
+        <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
 
+      <!--各ページのビュー表示-->
       <%= yield %>
     </main>
 

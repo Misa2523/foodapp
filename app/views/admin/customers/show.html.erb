@@ -7,50 +7,7 @@
     </div>
   </div>
 
-  <div class="row pt-3 pb-2">
-    <div class="col-5 text-right offset-1"><strong>会員ID</strong></div>
-    <div class="col-5 p-0" style="height: auto;"><%= @customer.id %></div>
-  </div>
-
-  <div class="row pb-2">
-    <div class="col-5 text-right offset-1"><strong>氏名</strong></div>
-    <div class="col-5 p-0" style="height: auto;"><%= @customer.name %></div>
-  </div>
-
-  <div class="row pb-2">
-    <div class="col-5 text-right offset-1"><strong>フリガナ</strong></div>
-    <div class="col-5 p-0" style="height: auto;"><%= @customer.name_kana %></div>
-  </div>
-
-  <div class="row pb-2">
-    <div class="col-5 text-right offset-1"><strong>メールアドレス</strong></div>
-    <div class="col-5 p-0" style="height: auto;"><%= @customer.email %></div>
-  </div>
-
-  <div class="row pb-2">
-    <div class="col-5 text-right offset-1"><strong>電話番号</strong></div>
-    <div class="col-5 p-0" style="height: auto;"><%= @customer.telephone_number %></div>
-  </div>
-
-  <div class="row pb-2">
-    <div class="col-5 text-right offset-1"><strong>会員ステータス</strong></div>
-    <% if @customer.is_active == true %> <!--会員ステータスが有効なら-->
-      <div class="col-5 p-0 text-success font-weight-bold" style="height: auto;">有効</div>
-    <% else %>
-      <div class="col-5 p-0 text-danger font-weight-bold" style="height: auto;">退会</div>
-    <% end %>
-  </div>
-
-  <div class="row pt-2 pb-2">
-    <div class="col-6 text-right">
-      <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-outline-success", style: "font-weight: bold;" %>
-    </div>
-    <div class="col-6 text-left">
-      <%= link_to "投稿一覧を見る", admin_customers_posts_index_path(@customer), class: "btn btn-outline-primary", style: "font-weight: bold;" %>
-    </div>
-  </div>
+  <!--部分テンプレート：会員情報詳細(プロフィール)-->
+  <%= render 'show', customer: @customer %>
 
 </div>
-
-
-

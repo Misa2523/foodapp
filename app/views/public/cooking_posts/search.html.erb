@@ -13,34 +13,10 @@
     </div>
   </div>
 
+  <!--料理の投稿一覧-->
   <div class="row my-4">
     <div class="col-md-9 mx-auto">
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr class="text-center">
-              <th>画像</th>
-              <th>料理名</th>
-              <th>投稿者</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @records.each do |record| %>
-              <% if record.is_a?(CookingPost) %>
-                <tr class="text-center">
-                  <td><%= image_tag record.get_cooking_post_image(70, 70) %></td>
-                  <td>
-                    <%= link_to cooking_post_path(record), style: "color: black; text-decoration: underline;" do %>
-                      <%= record.name %>
-                    <% end %>
-                  </td>
-                  <td><%= record.customer.name %></td>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= paginate @records, class: "pagination" %>
     </div>
   </div>
 
