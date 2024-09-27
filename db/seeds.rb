@@ -8,16 +8,16 @@
 
 # ↓ データベースに登録済み
 # 管理者
-# Admin.create(email: 'sample@example.com', password: '1231025')
+Admin.create(email: 'sample@example.com', password: '1231025')
 # 会員
-# customer = Customer.create!(
-#   name: '愛生江尾',
-#   name_kana: 'アイウエオ',
-#   email: 'aiueo111@email.com',
-#   telephone_number: '11111111111',
-#   password: 'aaiueo',
-#   password_confirmation: 'aaiueo',
-#   is_active: true
-# )
+customer = Customer.create!(
+  name: '愛生江尾',
+  name_kana: 'アイウエオ',
+  email: 'aiueo111@email.com',
+  telephone_number: '11111111111',
+  password: 'aaiueo',
+  password_confirmation: 'aaiueo',
+  is_active: true
+)
 # ジャンル
-# genre = Genre.create(name: "肉・卵")
+genre = Genre.create(name: "肉・卵")
