@@ -23,17 +23,11 @@
 ## 設計書
 [UI Flows](https://drive.google.com/file/d/1uiL7TqWViOR0nzY4sugj5QlWFZXiav7J/view?usp=drive_link)
 
->UI Flows
->
+[ER図](https://drive.google.com/file/d/17lmfhWGFAUmzMXbrTdUL4HLAeWpcPvIy/view?usp=drive_link)
 
->ER図
->
+[テーブル定義書](https://docs.google.com/spreadsheets/d/1rhhU0VLhET9IMV2jJHhBceQUkXehiRz9yDxAB-JWMqU/edit?gid=962421107#gid=962421107)
 
->テーブル定義書
->
-
->アプリケーション詳細設計書
->
+[アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1d_uCl3hqw7sqjtPTAvEb3vX2K_Y-PJhUbUdWgSiwiC8/edit?gid=549108681#gid=549108681)
 
 ## 開発環境
 - OS：Linux(CentOS)
