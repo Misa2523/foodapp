@@ -75,3 +75,15 @@
   background-color: transparent;  //背景色を透明に
 }
 /*------- ↑ ページネーションのcss-------*/
+
+
+/*------- ↓ 会員側の食材保存場所一覧ページのcss（public/food_strage_areas/index.html.erbに記述したclass）-------*/
+//説明文に適用
+.food-storage-description {
+  max-width: 80%;
+  background-color: #ffefe0;  //背景色
+  border-radius: 5px;         //角を丸める
+  border: 2px dashed #ffd3a8;  //枠線の太さ 枠線の種類(波線) 色
+}
+
+/*------- ↑ 会員側の食材保存場所一覧ページのcss-------*/
