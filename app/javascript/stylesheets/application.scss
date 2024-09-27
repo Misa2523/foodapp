@@ -1,6 +1,16 @@
 @use '~bootstrap/scss/bootstrap';
 
-/*------- ↓ フラッシュメッセージのcss-------*/
+/*------- ↓ 会員の新規登録におけるエラーメッセージのcss（views/public/shared/_error_messages.html.erbに記述したclass）-------*/
+//各項目に対するエラーメッセージ部分に適用
+.customer-errors {
+  list-style: none;     //番号や点の非表示
+  color: #930403;       //テキストの色
+  font-size: 12px;      //文字サイズ
+}
+/*------- ↑ 会員の新規登録/ログインにおけるエラーメッセージのcss-------*/
+
+
+/*------- ↓ フラッシュメッセージのcss（views/layouts/application.html.erbに記述したclass）-------*/
 //フラッシュメッセージ全部に適用
 .flash-message {
   font-size: 12px;
@@ -26,8 +36,8 @@
 /*------- ↑ フラッシュメッセージのcss-------*/
 
 
-/*------- ↓ ページネーションのcss-------*/
-//全体に適用
+/*------- ↓ ページネーションのcss（views/kaminari内にあるファイルそれぞれに記述したclass）-------*/
+//全体に適用（views/kaminari/_paginator.html.erb）
 .pagination {
   display: flex;            //子要素（ページ番号やリンク）を横並びに
   justify-content: center;  //子要素を中央揃えに
@@ -56,7 +66,7 @@
   transition: all 0.3s ease;  //すべてを0.3秒かけて変化させる（～～を～～秒かけて変化）easeは速度変化
 }
 
-//ページ数のホバー時に適用
+//ページ数のホバー時に適用（views/kaminari/_page.html.erb）
 .page:hover {
   background-color: #ffe5cc;  //背景色
 }
