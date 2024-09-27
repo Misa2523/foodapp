@@ -8,6 +8,9 @@ class CookingPost < ApplicationRecord
   #バリデーション設定
   validates :name, presence: true
   validates :introduction, presence: true
+  #gem追加後の画像におけるバリデーション設定
+  validates :cooking_post_image, content_type: { in: ['image/jpg', 'image/jpeg', 'image/png'] } #画像の拡張子を制限
+  validates :cooking_post_image, size: { less_than: 5.megabytes } #画像のサイズを制限
 
   #画像の設定メソッド
   def get_cooking_post_image(width, height)

@@ -18,9 +18,9 @@ class Public::HomeFoodsController < ApplicationController
       redirect_to home_foods_path
     else
       if HomeFood.exists?(name: @home_food.name, customer_id: current_customer.id) #入力された食材名がログイン中ユーザーによって既に登録済みだった場合
-        flash[:notice] = "その食材は既に登録されています"
+        flash.now[:alert] = "その食材は既に登録されています"
       else #食材名が登録済みではないが、正常に登録できなかった場合
-        flash[:notice] = "食材の登録ができませんでした"
+        flash.now[:alert] = "食材の登録ができませんでした"
       end
       render :new
     end
@@ -84,9 +84,9 @@ class Public::HomeFoodsController < ApplicationController
     else
       @home_food = HomeFood.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
       if HomeFood.exists?(name: @home_food.name, customer_id: current_customer.id) #入力された食材名がログイン中ユーザーによって既に登録済みだった場合
-        flash[:notice] = "その食材は既に登録されています"
+        flash.now[:alert] = "その食材は既に登録されています"
       else #食材名が登録済みではないが、正常に登録できなかった場合
-        flash[:notice] = "入力項目を正しく入力してください"
+        flash.now[:alert] = "入力項目を正しく入力してください"
       end
       render :edit
     end

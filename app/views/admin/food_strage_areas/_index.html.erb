@@ -1,0 +1,33 @@
+<!--部分テンプレート：食材保存場所一覧-->
+
+<div class="table-responsive">
+  <table class="table">
+    <thead class="font-weight-bold" style="background-color: #dfdfdf;">
+      <tr class="text-center">
+        <th>食材名</th>
+        <th>保存場所</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% food_strage_areas.each do |food_strage_area| %>
+        <tr class="text-center">
+          <td><%= food_strage_area.name %></td>
+          <td><%= food_strage_area.place %></td>
+
+          <% if admin_signed_in? %> <!--管理者がサインインしてる場合のみ表示-->
+            <td>
+              <div style="display: inline-block;">
+                <%= link_to "編集", edit_admin_food_strage_area_path(food_strage_area), class: "btn btn-sm btn-outline-success", style: "font-weight: bold;" %>
+              </div>
+              <div class="ml-3" style="display: inline-block;">
+                <%= button_to "削除", admin_food_strage_area_path(food_strage_area), method: :delete, class: "btn btn-sm btn-danger", data: {confirm: '本当に削除しますか？'} %>
+              </div>
+            </td>
+          <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -23,8 +23,24 @@ class Admin::CustomersController < ApplicationController
     if @customer.update(customer_params)
       flash[:notice] = "会員情報が更新されました"
       redirect_to admin_customer_path(@customer)
+
     else
-      flash[:notice] = "入力項目を正しく入力してください"
+      # 他のユーザーで同じメールアドレスまたは電話番号が存在しているか確認し、重複してたらそれぞれの変数に代入（where.not(id: @customer.id) ==> 現在のユーザー以外で）
+      email_exists = Customer.where.not(id: @customer.id).exists?(email: customer_params[:email])
+      telephone_exists = Customer.where.not(id: @customer.id).exists?(telephone_number: customer_params[:telephone_number])
+
+      if email_exists && telephone_exists # メールアドレスと電話番号の両方が重複してたら
+        flash.now[:alert] = "このメールアドレスと電話番号は既に使用されています"
+
+      elsif email_exists # メールアドレスのみ重複してたら
+        flash.now[:alert] = "このメールアドレスは既に使用されています"
+
+      elsif telephone_exists # 電話番号のみ重複してたら
+        flash.now[:alert] = "この電話番号は既に使用されています"
+
+      else
+        flash.now[:alert] = "入力項目を正しく入力してください"
+      end
       render :edit
     end
   end

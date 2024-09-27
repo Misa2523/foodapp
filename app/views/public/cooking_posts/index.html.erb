@@ -5,45 +5,25 @@
     <div class="col-md-5 text-center">
       <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>みんなの投稿一覧</strong></h4>
     </div>
-    <div class="col-md-5 text-right">
-      <%= render 'search', content: @content %> <!--部分テンプレート：キーワード検索フォーム-->
+  </div>
+
+  <div class="row py-3">
+    <div class="col-md-10 text-right">
+      <%= render 'search', content: @content, condition: @condition %> <!--部分テンプレート：キーワード検索フォーム-->
     </div>
   </div>
 
+  <!--部分テンプレート：料理の投稿一覧-->
   <div class="row my-4">
     <div class="col-md-9 mx-auto">
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr class="text-center">
-              <th>画像</th>
-              <th>料理名</th>
-              <th>投稿者</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @cooking_posts.each do |cooking_post| %>
-              <tr class="text-center">
-                <td><%= image_tag cooking_post.get_cooking_post_image(70, 70) %></td>
-                <td>
-                  <%= link_to cooking_post_path(cooking_post.id), style: "color: black; text-decoration: underline;" do %>
-                    <%= cooking_post.name %>
-                  <% end %>
-                </td>
-                <td><%= cooking_post.customer.name %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render 'index', cooking_posts: @cooking_posts %>
     </div>
   </div>
 
+  <!--ページネーション-->
   <div class="row">
     <div class="col">
-      <div style="display: flex; justify-content: center;">
-        <%= paginate @cooking_posts, class: "pagination" %>
-      </div>
+      <%= paginate @cooking_posts, class: "pagination" %>
     </div>
   </div>
 

@@ -5,39 +5,18 @@
     <div class="col-md-5 text-center">
       <h4 class="d-inline px-3" style="background-color: #dfdfdf;"><strong>会員一覧</strong></h4>
     </div>
-    <div class="col-md-5 text-right">
+  </div>
+
+  <div class="row py-3">
+    <div class="col-md-9 text-right">
       <p class="d-inline px-3" style="border-bottom: 1px solid;">" <%= @content %> "の検索結果</p>
     </div>
   </div>
 
+  <!--会員一覧-->
   <div class="row my-4">
     <div class="col-md-6 mx-auto">
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="font-weight-bold" style="background-color: #dfdfdf;">
-            <tr class="text-center">
-              <th>氏名</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @records.each do |record| %>
-
-              <% unless record.email == "guest@example.com" %> <!--ゲストユーザーでなければ表示-->
-                <% unless record.is_active == false %> <!--退会している会員でなければ表示-->
-                  <tr class="text-center">
-                    <td>
-                      <%= link_to posts_index_customers_path(record), style: "color: black; text-decoration: underline;" do %>
-                        <%= record.name %>
-                      <% end %>
-                    </td>
-                  </tr>
-                <% end %>
-              <% end %>
-
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= paginate @records, class: "pagination" %>
     </div>
   </div>
 

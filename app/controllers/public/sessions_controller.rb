@@ -13,7 +13,8 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     customer = Customer.guest
     sign_in customer  #ゲストユーザーをログイン状態にする
-    redirect_to root_path, notice: "ゲストユーザーでログインしました。"
+    flash[:notice] = "ゲストユーザーでログインしました"
+    redirect_to root_path
   end
 
   protected
@@ -26,7 +27,7 @@ class Public::SessionsController < Devise::SessionsController
         flash[:notice] = "退会済みです。再度会員登録をしてご利用ください。"
         redirect_to new_customer_registration_path and return
       else
-        flash[:notice] = "項目を入力してください"
+        flash.now[:alert] = "項目を入力してください"
       end
     end
   end

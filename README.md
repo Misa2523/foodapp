@@ -21,7 +21,13 @@
 - 期限が近くなった食材を確認する時
 
 ## 設計書
-後ほど作成予定
+[UI Flows](https://drive.google.com/file/d/1uiL7TqWViOR0nzY4sugj5QlWFZXiav7J/view?usp=drive_link)
+
+[ER図](https://drive.google.com/file/d/17lmfhWGFAUmzMXbrTdUL4HLAeWpcPvIy/view?usp=drive_link)
+
+[テーブル定義書](https://docs.google.com/spreadsheets/d/1rhhU0VLhET9IMV2jJHhBceQUkXehiRz9yDxAB-JWMqU/edit?gid=962421107#gid=962421107)
+
+[アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1d_uCl3hqw7sqjtPTAvEb3vX2K_Y-PJhUbUdWgSiwiC8/edit?gid=549108681#gid=549108681)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -35,3 +41,7 @@
 >https://www.smartmat.io/column/inventory_contorol/8145
 >農林水産省「食品ロス量(令和2年度推計値)の公表について」
 >環境省「我が国の食品廃棄物等及び食品ロスの発生量の推計値(令和2年度)の公表について」
+
+>【画像素材をダウンロードしたサイト】
+>https://www.pakutaso.com/
+>PAKUTASO

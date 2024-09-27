@@ -36,4 +36,5 @@ feature/keyword-search：キーワード検索機能の実装(みんなの投稿
 feature/genre-search-2：なぜか消えたファイルの内容を再度記述（feature/genre-searchブランチに残っていた内容をコピペ）
 feature/sort：ソート機能の実装(家庭内食材一覧ページ)
 
-部分テンプレート化、登録画像における拡張子の指定(jpg以外は登録できないよう設定)
+feature/fix-2：2ndテストで見つかった改善点の修正
+feature/small-feature-add：部分テンプレート化、登録画像における拡張子の指定(jpg以外は登録できないよう設定)、ページネーションにcss反映、フラッシュメッセージの統一

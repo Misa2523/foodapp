@@ -105,15 +105,23 @@
               <!--ヘッダー上段の右側 -->
               <div class="d-flex"> <!--ul要素を右寄せにする-->
                 <ul class="nav">
-                  <li><%= link_to "会員一覧", admin_path, class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "投稿一覧", admin_cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "食材保存場所一覧", admin_food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
-                  <li><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary mr-3" %></li>
                   <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-secondary" %></li>
                 </ul>
               </div>
 
             </div>
+          </div>
+        </div>
+
+        <!--ヘッダー下段-->
+        <div class="px-3 py-2 border-bottom" style="border-bottom: 1px solid #404040 !important;">
+          <div class="container">
+              <ul class="nav justify-content-center">
+                <li><%= link_to "会員一覧", admin_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li><%= link_to "投稿一覧", admin_cooking_posts_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li><%= link_to "食材保存場所一覧", admin_food_strage_areas_path, class: "btn btn-outline-secondary mr-3" %></li>
+                <li><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-secondary mr-3" %></li>
+              </ul>
           </div>
         </div>
 
@@ -173,10 +181,12 @@
     </header>
 
     <main style="margin-top: 150px;">
+      <!--フラッシュメッセージ表示-->
       <% flash.each do |message_type, message| %>
-        <div class="flash-message <%= message_type %>"><%= message %></div> <!--フラッシュメッセージ表示-->
+        <div class="flash-message <%= message_type %>"><%= message %></div>
       <% end %>
 
+      <!--各ページのビュー表示-->
       <%= yield %>
     </main>
 

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: { #skipで使わないルーティング削除
     sessions: "admin/sessions"
   }
 
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root 'public/homes#top'
   get 'about', to: 'public/homes#about'
 
-  devise_scope :customer do   #ゲストログイン機能
+  devise_scope :customer do #ゲストログイン機能
     post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 

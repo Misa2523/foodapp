@@ -20,7 +20,7 @@ class Public::CookingPostsController < ApplicationController
       flash[:notice] = "新しい料理を投稿しました"
       redirect_to cooking_post_path(@cooking_post.id)
     else
-      flash[:notice] = "料理の投稿ができませんでした"
+      flash.now[:alert] = "料理の投稿ができませんでした"
       render :new
     end
   end
@@ -32,11 +32,11 @@ class Public::CookingPostsController < ApplicationController
 
   def search
     @content = params["content"] #_search.html.erbにて入力したキーワードを@contentに代入
-    @model = "cooking_posts" #条件を料理投稿モデルに固定
+    @condition = params["condition"] #_search.html.erbにて選択した検索カラムを@conditionに代入
     @method = "partial" #条件を部分一致に固定
 
     # 検索結果を@recordsに代入（search_forメソッドはprivate内に記述)
-    @records = search_for(@content, @model, @method)
+    @records = search_for(@content, @condition, @method)
   end
 
   def show
@@ -55,7 +55,7 @@ class Public::CookingPostsController < ApplicationController
       redirect_to cooking_post_path(@cooking_post.id)
     else
       @cooking_post = CookingPost.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
-      flash[:notice] = "入力項目を正しく入力してください"
+      flash.now[:alert] = "入力項目を正しく入力してください"
       render :edit
     end
   end
@@ -67,7 +67,7 @@ class Public::CookingPostsController < ApplicationController
       redirect_to posts_index_customers_path(current_customer.id) #自分の投稿一覧ページへ遷移
     else
       @cooking_post = CookingPost.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
-      flash[:notice] = "料理の削除ができませんでした"
+      flash.now[:alert] = "料理の削除ができませんでした"
       render :edit
     end
   end
@@ -98,8 +98,15 @@ class Public::CookingPostsController < ApplicationController
   end
 
   # キーワード検索用のメソッド
-  def search_for(content, model, method)
-    CookingPost.where("introduction LIKE ?", "%"+content+"%") #部分一致
+  def search_for(content, condition, method)
+    if condition == "name" #料理名カラムが選択された場合
+      CookingPost.includes(:customer).where(customers: { is_active: true }) #会員ステータスが有効である会員の投稿を取得（アソシエーションの関係はincludesで読み込み）
+                  .where("cooking_posts.name LIKE ?", "%"+content+"%") #部分一致
+
+    elsif condition == "introduction" #紹介文カラムが選択された場合
+      CookingPost.includes(:customer).where(customers: { is_active: true })
+                  .where("introduction LIKE ?", "%"+content+"%") #部分一致
+    end
   end
 
 end

@@ -41,7 +41,7 @@ class Admin::GenresController < ApplicationController
       redirect_to admin_genres_path
     else
       @genre = Genre.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
-      flash[:notice] = "入力項目を正しく入力してください"
+      flash.now[:alert] = "入力項目を正しく入力してください"
       render :edit
     end
   end

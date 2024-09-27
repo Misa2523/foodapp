@@ -1,1 +1,67 @@
 @use '~bootstrap/scss/bootstrap';
+
+/*------- ↓ フラッシュメッセージのcss-------*/
+//フラッシュメッセージ全部に適用
+.flash-message {
+  font-size: 12px;
+  display: inline-block;  //テキストに合わせて横幅を調整
+  border-radius: 5px;     //角を丸める
+  padding: 5px 10px;          //内側余白
+  margin: 16px 0 0 5px;         //外側余白（上 右 下 左）
+}
+
+//noticeのフラッシュメッセージに適用
+.flash-message.notice {
+  background-color: #bcdfff;  //背景色
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+
+//alertのフラッシュメッセージに適用
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}
+/*------- ↑ フラッシュメッセージのcss-------*/
+
+
+/*------- ↓ ページネーションのcss-------*/
+//全体に適用
+.pagination {
+  display: flex;            //子要素（ページ番号やリンク）を横並びに
+  justify-content: center;  //子要素を中央揃えに
+  list-style: none;         //番号や点の非表示
+  padding: 0;               //内側余白
+  font-weight: bold;        //文字を太字にする
+}
+
+//各リストアイテムli要素に適用
+.pagination li {
+  margin: 0 5px;
+}
+
+//リンク<a>とページ番号<span>に適用
+.pagination a, .pagination span {
+  display: inline-block;  //各ページ番号やリンクをインラインブロックにし、幅や高さを指定できるようにする
+  width: 40px;
+  height: 40px;
+  line-height: 40px;      //行の高さ
+  text-align: center;     //テキストの中央揃え
+  border-radius: 50%;     //要素を円形に（角を丸める）
+  color: #404040;         //テキストの色
+  text-decoration: none;  //リンクの下線を削除
+
+  //ホバー時
+  transition: all 0.3s ease;  //すべてを0.3秒かけて変化させる（～～を～～秒かけて変化）easeは速度変化
+}
+
+//ページ数のホバー時に適用
+.page:hover {
+  background-color: #ffe5cc;  //背景色
+}
+//現在のページのホバー時に適用
+.current:hover {
+  background-color: transparent;  //背景色を透明に
+}
+/*------- ↑ ページネーションのcss-------*/

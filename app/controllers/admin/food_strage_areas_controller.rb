@@ -13,7 +13,7 @@ class Admin::FoodStrageAreasController < ApplicationController
       flash[:notice] = "新しい食材を登録しました"
       redirect_to admin_food_strage_areas_path
     else
-      flash[:notice] = "食材の登録ができませんでした"
+      flash.now[:alert] = "食材の登録ができませんでした"
       render :new
     end
   end
@@ -44,7 +44,7 @@ class Admin::FoodStrageAreasController < ApplicationController
       redirect_to admin_food_strage_areas_path
     else
       @food_strage_area = FoodStrageArea.find(params[:id]) #renderでeditページを描くため、editで使う変数をこのアクション内で再定義
-      flash[:notice] = "入力項目を正しく入力してください"
+      flash.now[:alert] = "入力項目を正しく入力してください"
       render :edit
     end
   end

@@ -36,10 +36,27 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       flash[:notice] = "会員情報が更新されました"
       redirect_to customers_my_page_path
+
     else
-      flash[:notice] = "入力項目を正しく入力してください"
+      # 他のユーザーで同じメールアドレスまたは電話番号が存在しているか確認し、重複してたらそれぞれの変数に代入（where.not(id: @customer.id) ==> 現在のユーザー以外で）
+      email_exists = Customer.where.not(id: @customer.id).exists?(email: customer_params[:email])
+      telephone_exists = Customer.where.not(id: @customer.id).exists?(telephone_number: customer_params[:telephone_number])
+
+      if email_exists && telephone_exists # メールアドレスと電話番号の両方が重複してたら
+        flash.now[:alert] = "このメールアドレスと電話番号は既に使用されています"
+
+      elsif email_exists # メールアドレスのみ重複してたら
+        flash.now[:alert] = "このメールアドレスは既に使用されています"
+
+      elsif telephone_exists # 電話番号のみ重複してたら
+        flash.now[:alert] = "この電話番号は既に使用されています"
+
+      else
+        flash.now[:alert] = "入力項目を正しく入力してください"
+      end
       render :edit
     end
+
   end
 
   def check
@@ -47,10 +64,14 @@ class Public::CustomersController < ApplicationController
 
   def out
     @customer = current_customer
-    @customer.update(is_active: false) #is_activeカラムをfalseに更新（会員ステータスを退会状態に更新）。実際にはデータベース上の会員レコードは削除されない（論理削除）。
-    reset_session #セッション情報をリセット（個人情報やアクション履歴の情報をリセット）
-    flash[:notice] = "退会しました"
-    redirect_to new_customer_registration_path
+    if @customer.update(is_active: false) #is_activeカラムをfalseに更新（会員ステータスを退会状態に更新）。実際にはデータベース上の会員レコードは削除されない（論理削除）。
+      reset_session #セッション情報をリセット（個人情報やアクション履歴の情報をリセット）
+      flash[:notice] = "退会しました"
+      redirect_to new_customer_registration_path
+    else
+      flash.now[:alert] = "正常に退会できませんでした"
+      render :check
+    end
   end
 
   private
