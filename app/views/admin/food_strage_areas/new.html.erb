@@ -18,8 +18,8 @@
       <div class="col-3 text-right offset-1"><%= f.label :"保存場所" %></div>
       <div class="col-5 p-0">
         <% FoodStrageArea.places.keys.each do |place| %> <!--enumで定義した保存場所の値を取得し、ループでそれぞれの選択肢を生成-->
-          <%= f.radio_button :place, place %> <!--ラジオボタン-->
-          <%= f.label :place, place %> <!--ラベル-->
+          <%= f.radio_button :place, place, id: "place_#{place}" %> <!--id: "place_#{place}" ラベルにもクリック判定をつけるため、ラジオボタンにid属性を付与-->
+          <%= f.label :place, place, for: "place_#{place}" %> <!--for: "place_#{place}" ラベルにもクリック判定をつけるため、for属性で↑のidを指定-->
         <% end %>
       </div>
     </div>

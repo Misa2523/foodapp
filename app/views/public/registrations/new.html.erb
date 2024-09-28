@@ -7,8 +7,15 @@
     </div>
   </div>
 
+  <!--部分テンプレート：エラーメッセージ-->
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <%= render "public/shared/error_messages", resource: resource %>
+    </div>
+  </div>
+
+  <!--入力フォーム-->
   <%= form_with model: @customer, url: customer_registration_path do |f| %>
-    <%#= render "public/shared/error_messages", resource: resource %>
 
     <div class="row pb-2">
       <div class="col-4 text-right offset-1"><%= f.label :"氏名" %></div>
