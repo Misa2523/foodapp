@@ -22,14 +22,17 @@
     <div class="row">
       <p class="col-12 text-center" style="font-size: smaller; color: gray;">※期限は食材に記載のある方を入力してください。（どちらもない場合は未入力でOKです。）</p><!--注釈-->
     </div>
-    <div class="row pb-2">
-      <div class="col-md-6 col-12 d-flex align-items-center">
-        <div class="col-md-8 col-5 text-right offset-md-1"><%= f.label :"消費期限" %></div>
-        <div class="col-md-4 col-7 p-0"><%= f.date_field :expiration_date %></div> <!--カレンダー入力-->
+    <!-- 消費期限と賞味期限 -->
+    <div class="row form-group col-12 justify-content-center">
+      <!-- 消費期限 -->
+      <div class="col-md-3 col-6 ml-3 text-right d-flex" style="min-width: 250px;">
+        <div><%= f.label :"消費期限" %></div>
+        <div class="ml-2"><%= f.date_field :expiration_date %></div> <!--カレンダー入力-->
       </div>
-      <div class="col-md-6 col-12 d-flex align-items-center">
-        <div class="col-md-3 col-5 text-right"><%= f.label :"賞味期限" %></div>
-        <div class="col-md-9 col-7 p-0"><%= f.date_field :best_before_date %></div> <!--カレンダー入力-->
+      <!-- 賞味期限 -->
+      <div class="col-md-3 col-6 ml-3 text-left d-flex" style="min-width: 250px;">
+        <div><%= f.label :"賞味期限" %></div>
+        <div class="ml-2"><%= f.date_field :best_before_date %></div> <!--カレンダー入力-->
       </div>
     </div>
 
@@ -39,7 +42,7 @@
     </div>
 
     <div class="row pt-2 pb-2">
-      <div class="col-3 offset-4 text-center"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></div>
+      <div class="col-md-3 offset-md-4 text-center"><%= f.submit "変更を保存", class: "btn btn-success", style: "font-weight: bold;" %></div>
     </div>
 
   <% end %>
