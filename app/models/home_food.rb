@@ -3,7 +3,11 @@ class HomeFood < ApplicationRecord
   #アソシエーション
   belongs_to :customer
   belongs_to :genre
-  has_many :notifications, dependent: :destroy
+
+  #has_many :notifications, dependent: :destroy     消す？
+
+  #ポリモーフィック関連（通知機能で使用）
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   #バリデーション設定
   validates :name, uniqueness: { scope: :customer_id },  #同じ食材を別々で登録しないため一意性を設定(登録者が同一でない場合は登録できるようscopeを設定)
