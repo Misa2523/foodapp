@@ -29,6 +29,14 @@ class HomeFood < ApplicationRecord
     #--ソート機能のコード解説--#
   # Arel.sql("CASE WHEN [カラム名] IS NULL THEN 1 ELSE 0 END")の部分 ====> [カラム名]がNULLの場合1を返し、それ以外の場合は0を返す
 
+  #通知機能     消費期限が近い食材の通知を作成
+  def check_and_create_notifications
+    home_foods_near_expiry = HomeFood.where("expiration_date <= ?", Date.today + 3.days)
+    home_foods_near_expiry.each do |home_hood|
+      home_food.notifications.create(message: "#{home_food.name}の期限が近づいています")
+    end
+  end
+
   private
 
   #名前の前後の空白を自動で削除する
