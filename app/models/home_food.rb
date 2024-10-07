@@ -3,11 +3,7 @@ class HomeFood < ApplicationRecord
   #アソシエーション
   belongs_to :customer
   belongs_to :genre
-
-  #has_many :notifications, dependent: :destroy     消す？
-
-  #ポリモーフィック関連（通知機能で使用）
-  has_many :notifications, as: :notifiable, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   #バリデーション設定
   validates :name, uniqueness: { scope: :customer_id },  #同じ食材を別々で登録しないため一意性を設定(登録者が同一でない場合は登録できるようscopeを設定)
@@ -28,14 +24,6 @@ class HomeFood < ApplicationRecord
   }
     #--ソート機能のコード解説--#
   # Arel.sql("CASE WHEN [カラム名] IS NULL THEN 1 ELSE 0 END")の部分 ====> [カラム名]がNULLの場合1を返し、それ以外の場合は0を返す
-
-  #通知機能     消費期限が近い食材の通知を作成
-  def check_and_create_notifications
-    home_foods_near_expiry = HomeFood.where("expiration_date <= ?", Date.today + 3.days)
-    home_foods_near_expiry.each do |home_hood|
-      home_food.notifications.create(message: "#{home_food.name}の期限が近づいています")
-    end
-  end
 
   private
 

@@ -48,6 +48,7 @@ class Public::HomeFoodsController < ApplicationController
     # HomeFood.[スコープ名]の部分 ====> 例えば[]スコープ名]が上記のexpiration_soonの場合は、expiration_soonスコープが適用されたHomeFoodモデルのデータを取得
     # includes(:customer).where(customer_id: current_customer.id)の部分 ====> ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
     # .page(params[:page]).per(10)の部分 ====> ページネーション
+
   end
 
   def genre_search
