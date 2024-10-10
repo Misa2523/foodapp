@@ -181,8 +181,9 @@ class Public::HomeFoodsController < ApplicationController
     # includes(:customer).where(customer_id: current_customer.id)の部分 ====> ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
     # .page(params[:page]).per(10)の部分 ====> ページネーション
 
-    #通知機能   モデルファイルで記述した関数を呼び出し、通知をチェック&作成
-    HomeFood.check_and_create_notifications
+    #通知機能   消費期限の近い食材をチェックし、フラッシュメッセージを設定
+    
+    # HomeFood.check_and_create_notifications
 
   end
 

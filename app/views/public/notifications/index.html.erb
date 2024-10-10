@@ -12,6 +12,15 @@
       <h4 class="d-inline px-3" style="border-bottom: 1px solid;">～近日公開予定～</h4>
     </div>
   </div>
+  
+  
+  
+  <% @notifications.each do |notification| %>
+    <div>
+      <p><%= notification.message %></p>
+      <p>Created at: <%= notification.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+    </div>
+  <% end %>
 
 
 </div>

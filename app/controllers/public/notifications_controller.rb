@@ -7,6 +7,15 @@ class Public::NotificationsController < ApplicationController
   before_action :restricted_guest_user
 
   def index
+    # @notifications = Notification.where(user: current_user).order(created_at: :desc)
+    
+    #通知を表示するための処理
+    @notifications = Notification.all.order(created_at: :desc)
+  end
+  
+  def create
+    HomeFood.check_and_create_notifications
+    redirect_to notifications_path, notice: "消費期限の近い食材の通知があります"
   end
 
   def mark_as_read
