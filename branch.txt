@@ -43,4 +43,4 @@ feature/small-feature-add：部分テンプレート化、登録画像におけ�
 
 feature/fix-3：3rdテストで見つかった改善点の修正
 
-feature/notification：通知機能の実装（通知機能の追加実装は別のリポジトリでおこなうことにしたため、ここではつけない）
+feature/notification：通知機能の実装

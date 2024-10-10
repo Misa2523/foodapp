@@ -49,6 +49,12 @@ class Public::HomeFoodsController < ApplicationController
     # includes(:customer).where(customer_id: current_customer.id)の部分 ====> ログインユーザーが登録した情報のみ取得（アソシエーションの関係はincludesで読み込み）
     # .page(params[:page]).per(10)の部分 ====> ページネーション
 
+    #通知機能   消費期限の近い食材をチェックし、フラッシュメッセージを設定
+    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 3.days).where(customer_id: current_customer.id) #@near_expiry_foodsに期限の近い食材を格納
+    if @near_expiry_home_foods.any? #期限の近い食材がある場合
+      flash[:alert] = "期限の近い食材があります。通知をご確認ください。"
+    end
+
   end
 
   def genre_search
