@@ -38,12 +38,12 @@
 - IDE：Cloud9
 
 ## 使用素材
-【テーマ決めで参考にしたサイト】
+### テーマ決めで参考にしたサイト
 [フードロス　日本の現状について](https://www.smartmat.io/column/inventory_contorol/8145)
 
 [農林水産省「食品ロス量(令和2年度推計値)の公表について」](https://www.caa.go.jp/notice/entry/028995/)
 
 [環境省「我が国の食品廃棄物等及び食品ロスの発生量の推計値(令和2年度)の公表について」](https://www.env.go.jp/press/111157.html)
 
-【画像素材をダウンロードしたサイト】
+### 画像素材をダウンロードしたサイト
 [PAKUTASO](https://www.pakutaso.com/)
