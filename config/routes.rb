@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
 
     get '/notifications/:id/mark_as_read' => 'notifications#mark_as_read', as: "mark_as_read_notifications" #URIパターンを設計書通りに修正
-    resources :notifications, only: [:index, :create, :destroy]
+    resources :notifications, only: [:index, :destroy]
 
     get '/customers' => 'customers#index'
     get '/customers/my_page' => 'customers#show'

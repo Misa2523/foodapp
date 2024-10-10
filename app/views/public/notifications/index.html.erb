@@ -12,14 +12,16 @@
       <h4 class="d-inline px-3" style="border-bottom: 1px solid;">～近日公開予定～</h4>
     </div>
   </div>
-  
-  
-  
-  <% @notifications.each do |notification| %>
-    <div>
-      <p><%= notification.message %></p>
-      <p>Created at: <%= notification.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
-    </div>
+
+
+  <% if @near_expiry_foods.any? %>
+    <ul>
+      <% @near_expiry_foods.each do |food| %>
+        <li><%= food.name %> - 期限: <%= food.expiration_date %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>現在、期限が近い食材はありません。</p>
   <% end %>
 
 
