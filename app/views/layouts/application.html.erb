@@ -36,14 +36,14 @@
               <div class="d-flex"> <!--ul要素を右寄せにする-->
                 <ul class="nav">
                   <% unless guest? %> <!--helpers/application_helper.rbに記述したメソッド呼び出し（ゲストユーザーでなければ表示）-->
-                    <!--<li class="nav-item mr-3">-->
-                    <!--  <%#= link_to notifications_path, style: "text-decoration: none; color: #404040;" do %>-->
-                    <!--    <div style="text-align: center;">-->
-                    <!--      <i class="fa-solid fa-bell" style="font-size: 2em;"></i>-->
-                    <!--      <span style="display: block;">通知</span>-->
-                    <!--    </div>-->
-                    <!--  <%# end %>-->
-                    <!--</li>-->
+                    <li class="nav-item mr-3">
+                      <%= link_to notifications_path, style: "text-decoration: none; color: #404040;" do %>
+                        <div style="text-align: center;">
+                          <i class="fa-solid fa-bell" style="font-size: 2em;"></i>
+                          <span style="display: block;">通知</span>
+                        </div>
+                      <% end %>
+                    </li>
                     <li class="nav-item mr-3">
                       <%= link_to customers_my_page_path, style: "text-decoration: none; color: #404040;" do %>
                         <div style="text-align: center;">

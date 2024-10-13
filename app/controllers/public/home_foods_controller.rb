@@ -50,8 +50,9 @@ class Public::HomeFoodsController < ApplicationController
     # .page(params[:page]).per(10)の部分 ====> ページネーション
 
     #通知機能   消費期限の近い食材をチェックし、フラッシュメッセージを設定
-    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 3.days).where(customer_id: current_customer.id) #@near_expiry_foodsに期限の近い食材を格納
-    if @near_expiry_home_foods.any? #期限の近い食材がある場合
+    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 2.days).where(customer_id: current_customer.id) #@near_expiry_foodsに消費期限の近い食材を格納
+    @near_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today + 2.days).where(customer_id: current_customer.id) #@near_expiry_foodsに賞味期限の近い食材を格納
+    if @near_expiry_home_foods.any? || @near_best_before_home_foods.any? #どちらか一方、または両方がある場合
       flash[:alert] = "期限の近い食材があります。通知をご確認ください。"
     end
 
