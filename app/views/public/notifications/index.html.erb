@@ -10,7 +10,7 @@
   <div class="row my-4">
     <div class="col-md-9 mx-auto">
       <div class="table-responsive">
-        <% if @near_expiry_home_foods.any? || @near_best_before_home_foods.any? %>
+        <% if @near_expiry_home_foods.present? || @near_best_before_home_foods.present? %>
 
           <table class="table">
             <thead class="font-weight-bold" style="background-color: #dfdfdf;">
@@ -21,22 +21,39 @@
               </tr>
             </thead>
             <tbody>
-              <% @near_expiry_home_foods.each do |home_food| %>
-                <tr class="text-center">
-                  <td style="background-color: #fafafa;"><%= home_food.name %>の消費期限が２日後に切れます</td>
-                  <td style="background-color: #fafafa;"><%= home_food.expiration_date %></td>
-                  <td style="background-color: #fafafa;">
-                    <div class="mr-3" style="display: inline-block;">
-                      <%= link_to "既読", mark_as_read_notifications_path(home_food), class: "btn btn-sm btn-success", style: "font-weight: bold;" %>
-                    </div>
-                  </td>
-                </tr>
+              <!--消費期限の近い食材があったら表示-->
+              <% if @near_expiry_home_foods.present? %>
+                <% @near_expiry_home_foods.each do |home_food| %>
+                  <tr class="text-center">
+                    <td style="background-color: #fafafa;"><%= home_food.name %>の消費期限が２日後に切れます</td>
+                    <td style="background-color: #fafafa;"><%= home_food.expiration_date %></td>
+                    <td style="background-color: #fafafa;">
+                      <div class="mr-3" style="display: inline-block;">
+                        <%= link_to "既読", mark_as_read_notifications_path(home_food), class: "btn btn-sm btn-success", style: "font-weight: bold;" %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+              <!--賞味期限の近い食材があったら表示-->
+              <% if @near_best_before_home_foods.present? %>
+                <% @near_best_before_home_foods.each do |home_food| %>
+                  <tr class="text-center">
+                    <td style="background-color: #fafafa;"><%= home_food.name %>の賞味期限が２日後に切れます</td>
+                    <td style="background-color: #fafafa;"><%= home_food.expiration_date %></td>
+                    <td style="background-color: #fafafa;">
+                      <div class="mr-3" style="display: inline-block;">
+                        <%= link_to "既読", mark_as_read_notifications_path(home_food), class: "btn btn-sm btn-success", style: "font-weight: bold;" %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
               <% end %>
             </tbody>
           </table>
 
         <% else %>
-          <p>現在、期限が近い食材はありません。</p>
+          <p class="text-center">現在、期限が近い食材はありません。</p>
         <% end %>
 
       </div>
