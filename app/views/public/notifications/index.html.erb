@@ -7,9 +7,13 @@
     </div>
   </div>
 
+  <%= debug @near_expiry_home_foods %>
+  <%= debug @near_best_before_home_foods %>
+
   <div class="row my-4">
     <div class="col-md-9 mx-auto">
       <div class="table-responsive">
+        <!--どちらか一方、または両方のデータがあるなら表示-->
         <% if @near_expiry_home_foods.present? || @near_best_before_home_foods.present? %>
 
           <table class="table">
