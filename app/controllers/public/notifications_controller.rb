@@ -7,12 +7,18 @@ class Public::NotificationsController < ApplicationController
   before_action :restricted_guest_user
 
   def index
-    near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 3.days).where(customer_id: current_customer.id) #@near_expiry_foodsに期限の近い食材を格納
-    @near_expiry_home_foods = near_expiry_home_foods.page(params[:page]).per(10) #home_foodsにページネーションを追加
+    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 2.days).where(customer_id: current_customer.id) #@near_expiry_foodsに消費期限が2日以内の食材を格納
+    @near_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today + 2.days).where(customer_id: current_customer.id) #@near_best_before_foodsに賞味期限が2日以内の食材を格納
+
+
+    #@remaining_days_expiration = (home_food.expiration_date - Date.today).to_i     #消費期限までの残り日数
+    #@remaining_days_best_before = home_food.best_before_date - Date.today   #賞味期限までの残り日数
+
+    #@near_expiry_home_foods = near_expiry_home_foods.page(params[:page]).per(10) #home_foodsにページネーションを追加
   end
 
   def mark_as_read
-    
+
   end
 
   def destroy
