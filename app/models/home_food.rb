@@ -46,7 +46,7 @@ class HomeFood < ApplicationRecord
     return nil unless best_before_date.present?
     (Date.today - best_before_date).to_i
   end
-  
+
 
   private
 

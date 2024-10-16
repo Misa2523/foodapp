@@ -18,7 +18,6 @@
               <tr class="text-center">
                 <th>内容</th>
                 <th>消費期限/賞味期限</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -26,21 +25,15 @@
               <% if @near_expiry_home_foods.present? %>
                 <% @near_expiry_home_foods.each do |home_food| %>
                   <tr class="text-center">
-                    <td style="background-color: #fafafa;">
-                      <!--HomeFoodモデルに記述したremaining_expiration_daysメソッド呼び出し（消費期限が2日以内なら表示）-->
-                      <% if home_food.remaining_expiration_days >= 0 %>
-                        <%= home_food.name %>の消費期限が<%= home_food.remaining_expiration_days %>日後に切れます
-                      <!--HomeFoodモデルに記述したexpired_daysメソッド呼び出し-->
-                      <% else %>
-                        <%= home_food.name %>の消費期限が<%= home_food.expired_days %>日過ぎています
-                      <% end %>
-                    </td>
-                    <td style="background-color: #fafafa;"><%= home_food.expiration_date %></td>
-                    <td style="background-color: #fafafa;">
-                      <div class="mr-3" style="display: inline-block;">
-                        <%= link_to "既読", mark_as_read_notifications_path(home_food), class: "btn btn-sm btn-success", style: "font-weight: bold;" %>
-                      </div>
-                    </td>
+                    <!--HomeFoodモデルに記述したremaining_expiration_daysメソッド呼び出し（消費期限が2日以内なら表示）-->
+                    <% if home_food.remaining_expiration_days >= 0 %>
+                      <td><%= home_food.name %>の消費期限が<%= home_food.remaining_expiration_days %>日後に切れます</td>
+                      <td><%= home_food.expiration_date %></td>
+                    <!--HomeFoodモデルに記述したexpired_daysメソッド呼び出し-->
+                    <% else %>
+                      <td style="background-color: #fafafa;"><%= home_food.name %>の消費期限が<%= home_food.expired_days %>日過ぎています</td>
+                      <td style="background-color: #fafafa;"><%= home_food.expiration_date %></td>
+                    <% end %>
                   </tr>
                 <% end %>
               <% end %>
@@ -48,19 +41,13 @@
               <% if @near_best_before_home_foods.present? %>
                 <% @near_best_before_home_foods.each do |home_food| %>
                   <tr class="text-center">
-                    <td style="background-color: #fafafa;">
-                      <% if home_food.remaining_best_before_days >= 0 %>
-                        <%= home_food.name %>の賞味期限が<%= home_food.remaining_best_before_days %>日後に切れます
-                      <% else %>
-                        <%= home_food.name %>の賞味期限が<%= home_food.expired_best_before_days %>日過ぎています
-                      <% end %>
-                    </td>
-                    <td style="background-color: #fafafa;"><%= home_food.best_before_date %></td>
-                    <td style="background-color: #fafafa;">
-                      <div class="mr-3" style="display: inline-block;">
-                        <%= link_to "既読", mark_as_read_notifications_path(home_food), class: "btn btn-sm btn-success", style: "font-weight: bold;" %>
-                      </div>
-                    </td>
+                    <% if home_food.remaining_best_before_days >= 0 %>
+                      <td><%= home_food.name %>の賞味期限が<%= home_food.remaining_best_before_days %>日後に切れます</td>
+                      <td><%= home_food.best_before_date %></td>
+                    <% else %>
+                      <td style="background-color: #fafafa;"><%= home_food.name %>の賞味期限が<%= home_food.expired_best_before_days %>日過ぎています</td>
+                      <td style="background-color: #fafafa;"><%= home_food.best_before_date %></td>
+                    <% end %>
                   </tr>
                 <% end %>
               <% end %>

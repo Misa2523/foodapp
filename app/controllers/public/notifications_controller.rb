@@ -20,7 +20,6 @@ class Public::NotificationsController < ApplicationController
   end
 
   def mark_as_read
-
   end
 
   def destroy
