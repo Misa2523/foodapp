@@ -36,6 +36,17 @@ class HomeFood < ApplicationRecord
     return nil unless best_before_date.present?
     (best_before_date - Date.today).to_i
   end
+  #消費期限が過ぎた日数を計算するメソッド
+  def expired_days
+    return nil unless expiration_date.present? #消費期限がない場合はnil
+    (Date.today - expiration_date).to_i
+  end
+  #賞味期限が過ぎた日数を計算するメソッド
+  def expired_best_before_days
+    return nil unless best_before_date.present?
+    (Date.today - best_before_date).to_i
+  end
+  
 
   private
 

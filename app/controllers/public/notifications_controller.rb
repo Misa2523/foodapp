@@ -7,8 +7,23 @@ class Public::NotificationsController < ApplicationController
   before_action :restricted_guest_user
 
   def index
-    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 2.days).where(customer_id: current_customer.id) #@near_expiry_foodsに消費期限が2日以内の食材を格納
-    @near_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today + 2.days).where(customer_id: current_customer.id) #@near_best_before_foodsに賞味期限が2日以内の食材を格納
+    #期限が2日以内の食材（消費期限）
+    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 2.days)
+                                      .where("expiration_date IS NOT NULL")
+                                      .where(customer_id: current_customer.id)
+    #期限が2日以内の食材（消費期限）
+    @near_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today + 2.days)
+                                            .where("best_before_date IS NOT NULL")
+                                            .where(customer_id: current_customer.id)
+    #期限が切れいている食材（消費期限が過ぎたもの）
+    @expired_home_foods = HomeFood.where("expiration_date <= ?", Date.today)
+                                  .where("expiration_date IS NOT NULL")
+                                  .where(customer_id: current_customer.id)
+    #期限が切れいている食材（賞味期限が過ぎたもの）
+    @expired_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today)
+                                  .where("best_before_date IS NOT NULL")
+                                  .where(customer_id: current_customer.id)
+
 
 
     #@remaining_days_expiration = (home_food.expiration_date - Date.today).to_i     #消費期限までの残り日数

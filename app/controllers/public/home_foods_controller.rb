@@ -56,10 +56,6 @@ class Public::HomeFoodsController < ApplicationController
       flash[:alert] = "期限の近い食材があります。通知をご確認ください。"
     end
 
-     # デバッグ用に確認
-    Rails.logger.debug "near_expiry_home_foods: #{@near_expiry_home_foods.inspect}"
-    Rails.logger.debug "near_best_before_home_foods: #{@near_best_before_home_foods.inspect}"
-
   end
 
   def genre_search
