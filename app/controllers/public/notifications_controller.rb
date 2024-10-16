@@ -7,27 +7,14 @@ class Public::NotificationsController < ApplicationController
   before_action :restricted_guest_user
 
   def index
-    #期限が2日以内の食材（消費期限）
-    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 2.days)
-                                      .where("expiration_date IS NOT NULL")
-                                      .where(customer_id: current_customer.id)
-    #期限が2日以内の食材（消費期限）
+    #消費期限の近い食材
+    @near_expiry_home_foods = HomeFood.where("expiration_date <= ?", Date.today + 2.days) #今日から2日以内の期限であるレコードを取得（? はプレースホルダーで、後に続く"Date.today + 2.days"の値がこの条件に適用される）
+                                      .where("expiration_date IS NOT NULL") #expiration_dateが存在している（NULLでない）レコードを取得
+                                      .where(customer_id: current_customer.id) #customer_idが、現在のログインユーザーのidと一致するレコードを取得
+    #賞味期限の近い食材
     @near_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today + 2.days)
                                             .where("best_before_date IS NOT NULL")
                                             .where(customer_id: current_customer.id)
-    #期限が切れいている食材（消費期限が過ぎたもの）
-    @expired_home_foods = HomeFood.where("expiration_date <= ?", Date.today)
-                                  .where("expiration_date IS NOT NULL")
-                                  .where(customer_id: current_customer.id)
-    #期限が切れいている食材（賞味期限が過ぎたもの）
-    @expired_best_before_home_foods = HomeFood.where("best_before_date <= ?", Date.today)
-                                  .where("best_before_date IS NOT NULL")
-                                  .where(customer_id: current_customer.id)
-
-
-
-    #@remaining_days_expiration = (home_food.expiration_date - Date.today).to_i     #消費期限までの残り日数
-    #@remaining_days_best_before = home_food.best_before_date - Date.today   #賞味期限までの残り日数
 
     #@near_expiry_home_foods = near_expiry_home_foods.page(params[:page]).per(10) #home_foodsにページネーションを追加
   end
