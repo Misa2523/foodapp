@@ -25,6 +25,29 @@ class HomeFood < ApplicationRecord
     #--ソート機能のコード解説--#
   # Arel.sql("CASE WHEN [カラム名] IS NULL THEN 1 ELSE 0 END")の部分 ====> [カラム名]がNULLの場合1を返し、それ以外の場合は0を返す
 
+  #通知機能
+  #消費期限の残り日数を計算するメソッド
+  def remaining_expiration_days
+    return nil unless expiration_date.present? #消費期限がない場合はnil
+    (expiration_date - Date.today).to_i
+  end
+  #賞味期限の残り日数を計算するメソッド
+  def remaining_best_before_days
+    return nil unless best_before_date.present?
+    (best_before_date - Date.today).to_i
+  end
+  #消費期限が過ぎた日数を計算するメソッド
+  def expired_days
+    return nil unless expiration_date.present? #消費期限がない場合はnil
+    (Date.today - expiration_date).to_i
+  end
+  #賞味期限が過ぎた日数を計算するメソッド
+  def expired_best_before_days
+    return nil unless best_before_date.present?
+    (Date.today - best_before_date).to_i
+  end
+
+
   private
 
   #名前の前後の空白を自動で削除する
